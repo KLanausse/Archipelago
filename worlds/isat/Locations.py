@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, NamedTuple, Optional
+from typing import TYPE_CHECKING, NamedTuple, Optional, List
+
+from jinja2.nodes import Dict
+
 from BaseClasses import ItemClassification, Location
 
 from .Types import LocData
@@ -31,7 +34,7 @@ level_table = { # Levels
     "Odile - Craft Break",
 }
 
-dormont_table = {
+dormont_table: Dict[str, Dict[str, str]] = {
     "Act 1": {
         "Reminder Note":            None,
         "Tutorial Kid Victory":     None,
@@ -39,77 +42,74 @@ dormont_table = {
         "Sky-Loving Kid":           None,
         "Flower Growing One":       None,
         "Drawing Kid":              None,
-        "Bonnie Flower":            "Flower Growing One",
-        "Isabeau Flower":           "Flower Growing One",
-        "Mirabelle Flower":         "Flower Growing One",
-        "Odile Flower":             "Flower Growing One",
+        "Bonnie Flower":            "Bright Flower",
+        "Isabeau Flower":           "Bright Flower",
+        "Mirabelle Flower":         "Bright Flower",
+        "Odile Flower":             "Bright Flower",
         "Welcome to the show!":     None,
     },
-    "Castle-Loving One's Sidequest",
-    "Stylish One's Sidequest",
-    "Blind One's House",
 
-    "Memory of Touch",
-    "Memory of Fishing",
-    "Memory of Defeat",
-    "Memory of Memories",
-    "Mirabelle's Friendquest":     ,
-    "Memory of Puns":              ,
-    "Isabeau's Friendquest":       ,
-    "Odile's Friendquest":         ,
-    "Bonnie's Friendquest":        ,
-    "Opened Fanmail":              ,
-    "Beautiful One's Cupboard":    ,
+    "Act 2": {
+        "Call Loop":                        None, # Progression: Floor 1
+        "Warning! Sharp!":                  None, # Progression: Floor 1
 
-    "Warning! Sharp!":             ,
-    "Call Loop":                   ,
-    "Shopkeeper's Openphrase":     ,
-    "Mystery Book":                ,
+        "Loop Flower":                      "Bright Flower",
+        # Redo this. Likely w/ a string array
+        "No thanks, stardust!":             "Any Souvenir", # Progression: Floor 1
 
-    "No thanks, stardust!":        ,
-    "What was that about...?":     ,
-    "Loop Flower":                 ,
-    "Encore!":                     ,
-    "Loop Battle":                 ,
-    "Loop's Coin":                 ,
-    "In this moment...":           ,
-    "...You are loved.":           ,
-    "Nostalgie":                   ,
-    "IS THIS IT?":                 ,
-    "Here's some change":          ,
-}
+        "Memory of Fishing":                None,
+        "Shopkeeper's Openphrase":          None, # Progression: Shopkeeper
+        "Beautiful One's Cupboard":         None,
+        "Castle-Loving One's Sidequest":    None, # Progression: First Issue
+        "Stylish One's Sidequest":          None, # Progression: Stylish One
+        "Blind One's House":                "Change Openphrase", # Progression: Openphrase
+        "Opened Fanmail":                   "Loving Fanmail",
+    },
 
-location_region_map = {
+    "Act 3": {
+        "Memory of Defeat":         None, # Progression: King
 
-    "Dormont - Sky-Loving Kid":                 "Dormont - Act 1",
-    "Dormont - Flower Growing One":             "Dormont - Act 1",
-    "Dormont - Drawing Kid":                    "Dormont - Act 1",
-    "Entrance - Main Room - Circle Key":        "Entrance",
-    "Dormont - Call Loop":                      "Dormont - Act 2",
-    "Dormont - Castle-Loving One's Sidequest":  "Dormont - Act 2",
-    "Dormont - Stylish One's Sidequest":        "Dormont - Act 2",
-    "Dormont - Blind One's House":              "Dormont - Act 2",
-    "Dormont - Opened Fanmail":                 "Dormont - Act 2",
-    "Dormont - Shopkeeper's Openphrase":        "Dormont - Act 2",
-    "Dormont - Beautiful One's Cupboard":       "Dormont - Act 2",
-    "Dormont - Memory of Fishing":              "Dormont - Act 2",
-    "Dormont - Memory of Defeat":               "The King - Act 2",
-    "Dormont - Memory of Touch":                "Dormont - Act 3",
-    "Dormont - Mirabelle's Friendquest":        "Dormont - Act 3",
-    "Dormont - Isabeau's Friendquest":          "Dormont - Act 3",
-    "Dormont - Odile's Friendquest":            "Dormont - Act 3",
-    "Dormont - Bonnie's Friendquest":           "Dormont - Act 3",
-    "Dormont - Warning! Sharp!":                "Dormont - Act 3",
+        "Bonnie's Friendquest":     None, # Progression: Victory
+        "Encore!":                  None, # Progression: Victory
+        "Memory of Touch":          None, # Progression: Confession
 
-    "Dormont - Memory of Memories":             "Dormont - Act 4",
-    "Dormont - Memory of Puns":                 "Dormont - Act 4",
-    "Dormont - Mystery Book":                   "Dormont - Act 4",
+
+        "Mirabelle's Friendquest":  None, # Progression: Mirabelle
+        "Odile's Friendquest":      None, # Progression: Odile
+        "Isabeau's Friendquest":    None, # Progression: Loved
+
+        "In this moment...":        None, # Progression: Loved
+        "...You are loved.":        None, # Progression: Loved
+
+        "Memory of Puns":           None, # Progression: Betrayed
+        "Memory of Memories":       None, # Progression: Betrayed
+        "Mystery Book":             None, # Progression: Betrayed
+    },
+
+    "Act 4": {
+        "What was that about...?":  None, # Progression: Incident
+        "Nostalgie":                None,
+        "IS THIS IT?":              None,
+        "Here's some change":       None,
+    },
+
+    "Act 5": {
+    },
+
+    "Act 6": {
+        "Loop's Coin": None, # Progression: Two Hats
+        "Loop Battle": "Loop's Silver Coin", # Progression: Floor 1
+    }
 
 }
 
-regions_to_locations = {
-
+entrance_table: Dict[str, Dict[str, str]] = {
+    "Main Room - Circle Key"
 }
-for location in location_region_map:
-    location_table[location] = LocData(base_id+idx, location_region_map[location])
-    idx += 1
+
+location_table = {}
+# Create Location Table
+#idx = 0
+#for location in location_region_map:
+#    location_table[location] = LocData(base_id+idx, location_region_map[location])
+#    idx += 1

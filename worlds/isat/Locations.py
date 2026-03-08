@@ -1,37 +1,35 @@
-from typing import TYPE_CHECKING, NamedTuple, Optional, List
-
-from jinja2.nodes import Dict
+from typing import TYPE_CHECKING, NamedTuple, Optional, List, Dict
 
 from BaseClasses import ItemClassification, Location
 
-from .Types import LocData
-from ..jakanddaxter import level_table
+from .Types import LocData, BaseId
+from .Items import item_table
 
 if TYPE_CHECKING:
     from .World import InStarsAndTimeWorld
-
-base_id = 1677310
 
 class InStarsAndTimeLocation(Location):
     game = "In Stars and Time"
 
 level_table = { # Levels
-    "Siffrin - Buy One Get One Three",
-    "Siffrin - Done Heal",
-    "Siffrin - In A While, Rockodile",
-    "Siffrin - Regener-ade",
-    "Siffrin - Rose Printed Glasses",
-    "Siffrin - Tear You Apart",
-    "Siffrin - Rock Bottom",
-    "Mirabelle - Lovely Moving Cure",
-    "Mirabelle - Shining Life",
-    "Mirabelle - Mega Sparkle Heal",
-    "Isabeau - SO WEAK!!!",
-    "Isabeau - BREAK, BREAK!!!",
-    "Isabeau - NOT OVER YET!!!",
-    "Odile - Paper α V",
-    "Odile - Craft Buff",
-    "Odile - Craft Break",
+    "Act 1": {
+        "Siffrin - Buy One Get One Three":  None,
+        "Siffrin - Done Heal":              None,
+        "Siffrin - In A While, Rockodile":  None,
+        "Siffrin - Regener-ade":            None,
+        "Siffrin - Rose Printed Glasses":   None,
+        "Siffrin - Tear You Apart":         None,
+        "Siffrin - Rock Bottom":            None,
+        "Mirabelle - Lovely Moving Cure":   None,
+        "Mirabelle - Shining Life":         None,
+        "Mirabelle - Mega Sparkle Heal":    None,
+        "Isabeau - SO WEAK!!!":             None,
+        "Isabeau - BREAK, BREAK!!!":        None,
+        "Isabeau - NOT OVER YET!!!":        None,
+        "Odile - Paper α V":                None,
+        "Odile - Craft Buff":               None,
+        "Odile - Craft Break":              None,
+    }
 }
 
 dormont_table: Dict[str, Dict[str, str]] = {
@@ -107,9 +105,18 @@ entrance_table: Dict[str, Dict[str, str]] = {
     "Main Room - Circle Key"
 }
 
-location_table = {}
+all_locations = {
+    "Level": level_table,
+    "Dormont": dormont_table
+}
+
 # Create Location Table
-#idx = 0
-#for location in location_region_map:
-#    location_table[location] = LocData(base_id+idx, location_region_map[location])
-#    idx += 1
+location_count = 0
+location_table = {}
+for location_set in all_locations:
+    for act in all_locations[location_set]:
+        for location in all_locations[location_set][act]:
+            location_table[f"{location_set} - {location}"] = LocData(BaseId.Base+location_count, f"{act} - {location_set}", all_locations[location_set][act][location])
+            # print(f"\"{location_set} - {location}\": LocData({base_id+location_count}, \"{act} - {location_set}\", {all_locations[location_set][act][location]})")
+            location_count+=1
+

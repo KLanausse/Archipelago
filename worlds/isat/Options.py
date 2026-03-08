@@ -41,3 +41,5 @@ class InStarsAndTimesOptions(PerGameCommonOptions):
     death_link: DeathLink
     starting_craft: StartingCraft
     music_rando: MusicRando
+    enemy_rando: EnemyRando
+    troop_rando: TroopRando

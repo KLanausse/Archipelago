@@ -1,9 +1,12 @@
-import logging
-from typing import Dict
+from __future__ import annotations
+from typing import Dict, TYPE_CHECKING
 
 from BaseClasses import Item, ItemClassification
 
 from .Types import ItemData, InStarsAndTimeItem, BaseId, ItemType
+
+if TYPE_CHECKING:
+    from .World import InStarsAndTimeWorld
 
 # Skills 1-240
 # Items  241-341
@@ -54,6 +57,12 @@ starting_items: Dict[str, ItemData] = {
     "Siffrin's Silver Coin":        ItemData(BaseId.Item+42,    ItemClassification.progression, ItemType.Item)
 }
 
+dormont_items: Dict[str, ItemData] = {
+    "Reminder Note":    ItemData(1677326,    ItemClassification.filler, ItemType.Item),
+    "Drawing":      ItemData(1677331,    ItemClassification.filler, ItemType.Item),
+    "Loop's Coin":      ItemData(1677364,    ItemClassification.progression, ItemType.Item)
+}
+
 filler_items: Dict[str, ItemData] = {
     "Sour Tonic":           ItemData(BaseId.Item+2,     ItemClassification.filler, ItemType.Item, 5),
     "Super Sour Tonic":     ItemData(BaseId.Item+3,     ItemClassification.filler, ItemType.Item, 5),
@@ -70,8 +79,18 @@ filler_items: Dict[str, ItemData] = {
 
 # This name could be confusing. TODO: Rename
 all_items = {
-    **starting_items
+    **starting_items,
+    **dormont_items
+
 }
 
 # Create Item Table
 item_table = {name: data.id for name, data in all_items.items()}
+
+def create_item_with_correct_classification(world: InStarsAndTimeWorld, name: str) -> InStarsAndTimeItem:
+    # Our world class must have a create_item() function that can create any of our items by name at any time.
+    # So, we make this helper function that creates the item by name with the correct classification.
+    # Note: This function's content could just be the contents of world.create_item in world.py directly,
+    # but it seemed nicer to have it in its own function over here in items.py.
+
+    return InStarsAndTimeItem(name, all_items[name].classification, all_items[name].id, world.player)

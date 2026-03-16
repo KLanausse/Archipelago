@@ -1,3 +1,4 @@
+from __future__ import annotations
 from typing import TYPE_CHECKING, NamedTuple, Optional, List, Dict
 
 from BaseClasses import ItemClassification, Location
@@ -12,6 +13,8 @@ if TYPE_CHECKING:
 class InStarsAndTimeLocation(Location):
     game = "In Stars and Time"
 
+def get_location_names_with_ids(location_names: list[str]) -> dict[str, int | None]:
+    return {location_name: location_name_to_id[location_name] for location_name in location_names}
 
 level_table = {  # Levels
     "Act 1": {
@@ -111,17 +114,22 @@ all_locations = {
     "Dormont": dormont_table
 }
 
-def create_all_locations(arg):
-    print(f"create_all_locations stub... Passed arg: {arg}")
+def create_all_locations(world: InStarsAndTimeWorld):
+    dormont = world.get_region("Dormont")
+    dormont_locations = get_location_names_with_ids(["Dormont - Reminder Note", "Dormont - Tutorial Kid Victory"])
+    dormont.add_locations(dormont_locations, InStarsAndTimeLocation)
+    print(f"create_all_locations stub...")
 
 # Create Location Table
 location_count = 0
 location_table = {}
+location_name_to_id = {}
 for location_set in all_locations:
     for act in all_locations[location_set]:
         for location in all_locations[location_set][act]:
             location_table[f"{location_set} - {location}"] = (BaseId.Base + location_count,
                                                                      f"{act} - {location_set}",
-                                                                     all_locations[location_set][act][location])
+                                                                     all_locations[location_set][act][location]),
+            location_name_to_id[f"{location_set} - {location}"] = BaseId.Base + location_count
             # print(f"\"{location_set} - {location}\": LocData({base_id+location_count}, \"{act} - {location_set}\", {all_locations[location_set][act][location]})")
             location_count += 1

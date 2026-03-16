@@ -30,12 +30,30 @@ class InStarsAndTimeWorld(World):
     location_name_to_id = Locations.location_table
     options_dataclass = Options.InStarsAndTimesOptions
 
+    origin_region_name = "Dormont"
+
     def create_regions(self) -> None:
         Regions.create_and_connect_regions(self)
         Locations.create_all_locations(self)
 
+    def create_items(self) -> None:
+        itempool: list[Item] = [
+            self.create_item("Reminder Note"),
+            self.create_item("Drawing"),
+            self.create_item("Loop's Coin")
+        ]
+
+        self.multiworld.itempool += itempool
+
+
+    # Our world class must also have a create_item function that can create any one of our items by name at any time.
+    # We also put this in a different file, the same one that create_items is in.
+    def create_item(self, name: str) -> Items.InStarsAndTimeItem:
+        return Items.create_item_with_correct_classification(self, name)
+
+
     def fill_slot_data(self) -> Mapping[str, Any]:
         # If you need access to the player's chosen options on the client side, there is a helper for that.
         return self.options.as_dict(
-            "death_link", "starting_craft", "music_rando", "enemy_rando", "troop_rando"
+            "death_link", "death_link_amnesty", "starting_craft", "music_rando", "enemy_rando", "troop_rando"
         )

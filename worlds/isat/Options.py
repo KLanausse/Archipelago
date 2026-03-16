@@ -35,10 +35,19 @@ class TroopRando(Toggle):
 
     display_name = "Troop Randomizer"
 
+# Taken from V6's options
+class DeathLinkAmnesty(Range):
+    """Amount of Deaths to take before sending a DeathLink signal, for balancing difficulty"""
+    display_name = "Death Link Amnesty"
+    range_start = 0
+    range_end = 30
+    default = 5
+
 
 @dataclass
 class InStarsAndTimesOptions(PerGameCommonOptions):
     death_link: DeathLink
+    death_link_amnesty: DeathLinkAmnesty
     starting_craft: StartingCraft
     music_rando: MusicRando
     enemy_rando: EnemyRando

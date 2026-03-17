@@ -57,30 +57,23 @@ starting_items: Dict[str, ItemData] = {
     "Siffrin's Silver Coin":        ItemData(BaseId.Item+42,    ItemClassification.progression, ItemType.Item)
 }
 
-dormont_items: Dict[str, ItemData] = {
-    "Reminder Note":    ItemData(1677326,    ItemClassification.filler, ItemType.Item),
-    "Drawing":      ItemData(1677331,    ItemClassification.filler, ItemType.Item),
-    "Loop's Coin":      ItemData(1677364,    ItemClassification.progression, ItemType.Item)
-}
-
 filler_items: Dict[str, ItemData] = {
-    "Sour Tonic":           ItemData(BaseId.Item+2,     ItemClassification.filler, ItemType.Item, 5),
-    "Super Sour Tonic":     ItemData(BaseId.Item+3,     ItemClassification.filler, ItemType.Item, 5),
-    "Crafted Water":        ItemData(BaseId.Item+4,     ItemClassification.filler, ItemType.Item, 5),
-    "Pepper Juice":         ItemData(BaseId.Item+5,     ItemClassification.filler, ItemType.Item, 5),
-    "Ginger Juice":         ItemData(BaseId.Item+6,     ItemClassification.filler, ItemType.Item, 5),
-    "Thyme Juice":          ItemData(BaseId.Item+7,     ItemClassification.filler, ItemType.Item, 5),
+    "Sour Tonic":           ItemData(BaseId.Item+2,     ItemClassification.filler, ItemType.Item),
+    "Super Sour Tonic":     ItemData(BaseId.Item+3,     ItemClassification.filler, ItemType.Item),
+    "Crafted Water":        ItemData(BaseId.Item+4,     ItemClassification.filler, ItemType.Item),
+    "Pepper Juice":         ItemData(BaseId.Item+5,     ItemClassification.filler, ItemType.Item),
+    "Ginger Juice":         ItemData(BaseId.Item+6,     ItemClassification.filler, ItemType.Item),
+    "Thyme Juice":          ItemData(BaseId.Item+7,     ItemClassification.filler, ItemType.Item),
 
-    "Sweet Tonic":          ItemData(BaseId.Item+9,     ItemClassification.filler, ItemType.Item, 5),
-    "Super Sweet Tonic":    ItemData(BaseId.Item+10,    ItemClassification.filler, ItemType.Item, 5),
-    "Salty Broth":          ItemData(BaseId.Item+11,    ItemClassification.filler, ItemType.Item, 5),
+    "Sweet Tonic":          ItemData(BaseId.Item+9,     ItemClassification.filler, ItemType.Item),
+    "Super Sweet Tonic":    ItemData(BaseId.Item+10,    ItemClassification.filler, ItemType.Item),
+    "Salty Broth":          ItemData(BaseId.Item+11,    ItemClassification.filler, ItemType.Item),
 
 }
 
 # This name could be confusing. TODO: Rename
 all_items = {
     **starting_items,
-    **dormont_items
 
 }
 

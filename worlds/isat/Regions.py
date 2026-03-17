@@ -8,41 +8,18 @@ if TYPE_CHECKING:
     from .World import InStarsAndTimeWorld
 
 region_names = [
+    # Village
     "Dormont",
+
+    # Castle
     "Entrance",
-
-    "Floor 1 - Main Room",
-    # "Floor 1 - Forge",
-    # "Floor 1 - Crest"
-    # "Floor 1 - Kitchen",
-    # "Floor 1 - Left Hallway",
-    # "Floor 1 - Bedroom A",
-    # "Floor 1 - Bedroom B",
-    # "Floor 1 - Storage Room 1",
-
-    "Floor 2 - Main Room",
-    # "Floor 2 - Classroom",
-    # "Floor 2 - Crest",
-    # "Floor 2 - Housemaiden's Office",
-    # "Floor 2 - Trap Room",
-    # "Floor 2 - Poem Room",
-    # "Floor 2 - Library",
-    # "Floor 2 - Secret Library",
-
-    "Floor 3 - Main Room",
-    # "Floor 3 - Mirror Room",
-    # "Floor 3 - Secret Room",
-    # "Floor 3 - Pottery Studio"
-    # "Floor 3 - Observatory"
-    # "Floor 3 - Crest",
-    # "Floor 3 - Poem Room",
-    # "Floor 3 - Crest",
-    # "Floor 3 - Mirabell's Room",
-    # "Floor 3 - Body Crafting Room",
-    # "Floor 3 - In-Between Room",
-    # "Floor 3 - Shrine",
-
-    "The End"
+    "Floor 1 - Main Room" # 017 Locked by Circle Key
+    "Floor 1 - Armory",
+    "Floor 1 - Left Hallway" # 078 Locked by Egg Key
+    "Floor 1 - Candle Dorm", # HAS OPAQUE GLASSES
+    "Floor 1 - Writing Dorm",
+    
+    "Floor 1 - Right Hallway",
 ]
 
 

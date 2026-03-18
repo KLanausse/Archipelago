@@ -74,16 +74,30 @@ filler_items: Dict[str, ItemData] = {
 # This name could be confusing. TODO: Rename
 all_items = {
     **starting_items,
-
+    **filler_items
 }
 
 # Create Item Table
 item_table = {name: data.id for name, data in all_items.items()}
 
-def create_item_with_correct_classification(world: InStarsAndTimeWorld, name: str) -> InStarsAndTimeItem:
-    # Our world class must have a create_item() function that can create any of our items by name at any time.
-    # So, we make this helper function that creates the item by name with the correct classification.
-    # Note: This function's content could just be the contents of world.create_item in world.py directly,
-    # but it seemed nicer to have it in its own function over here in items.py.
+def get_random_filler_item_name(world: InStarsAndTimeWorld):
+    print("update get_random_filler_item_name lol")
+    return "Sour Tonic" # Temp
 
+def create_item_with_correct_classification(world: InStarsAndTimeWorld, name: str) -> InStarsAndTimeItem:
     return InStarsAndTimeItem(name, all_items[name].classification, all_items[name].id, world.player)
+
+def create_all_items(world: InStarsAndTimeWorld) -> None:
+    itempool: list[Item] = [ world.create_item(name) for name, data in all_items.items() ]
+
+    # Based off of APQuest Code
+    number_of_items = len(itempool)
+    number_of_unfilled_locations = len(world.multiworld.get_unfilled_locations(world.player))
+    needed_number_of_filler_items = number_of_unfilled_locations - number_of_items
+    itempool += [world.create_filler() for _ in range(needed_number_of_filler_items)]
+
+    world.multiworld.itempool += itempool
+
+    # Starting Items
+    for name, data in starting_items:
+        world.push_precollected(world.create_item(name))

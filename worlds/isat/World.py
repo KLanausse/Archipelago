@@ -36,18 +36,10 @@ class InStarsAndTimeWorld(World):
         Regions.create_and_connect_regions(self)
         Locations.create_all_locations(self)
 
+    # Item Creation Funcs
     def create_items(self) -> None:
-        itempool: list[Item] = [
-            self.create_item("Reminder Note"),
-            self.create_item("Drawing"),
-            self.create_item("Loop's Coin")
-        ]
+        Items.create_all_items(self)
 
-        self.multiworld.itempool += itempool
-
-
-    # Our world class must also have a create_item function that can create any one of our items by name at any time.
-    # We also put this in a different file, the same one that create_items is in.
     def create_item(self, name: str) -> Items.InStarsAndTimeItem:
         return Items.create_item_with_correct_classification(self, name)
 

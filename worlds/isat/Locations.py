@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING, NamedTuple, Optional, List, Dict
 from BaseClasses import ItemClassification, Location
 
 from .Types import LocData, BaseId
-from .Items import item_table
+from .Items import ITEM_TABLE
 
 if TYPE_CHECKING:
     from .World import InStarsAndTimeWorld
@@ -16,41 +16,38 @@ class InStarsAndTimeLocation(Location):
 def get_location_names_with_ids(location_names: list[str]) -> dict[str, int | None]:
     return {location_name: location_name_to_id[location_name] for location_name in location_names}
 
-level_table = {  # Levels
-    "Act 1": {
-        "Siffrin - Buy One Get One Three": None,
-        "Siffrin - Done Heal": None,
-        "Siffrin - In A While, Rockodile": None,
-        "Siffrin - Regener-ade": None,
-        "Siffrin - Rose Printed Glasses": None,
-        "Siffrin - Tear You Apart": None,
-        "Siffrin - Rock Bottom": None,
-        "Mirabelle - Lovely Moving Cure": None,
-        "Mirabelle - Shining Life": None,
-        "Mirabelle - Mega Sparkle Heal": None,
-        "Isabeau - SO WEAK!!!": None,
-        "Isabeau - BREAK, BREAK!!!": None,
-        "Isabeau - NOT OVER YET!!!": None,
-        "Odile - Paper α V": None,
-        "Odile - Craft Buff": None,
-        "Odile - Craft Break": None,
-    }
+# Location IDs should match their item counterpart. If there is none associated, use BaseId.Misc
+level_table: Dict[str, LocData] = {  # Levels
+    "Siffrin - Buy One Get One Three":  LocData(BaseId.Skill+20,    "Act 1"),
+    "Siffrin - Done Heal":              LocData(BaseId.Skill+16,    "Act 1"),
+    "Siffrin - In A While, Rockodile":  LocData(BaseId.Skill+17,    "Act 1"),
+    "Siffrin - Regener-ade":            LocData(BaseId.Skill+155,   "Act 1"),
+    "Siffrin - Rose Printed Glasses":   LocData(BaseId.Skill+18,    "Act 1"),
+    "Siffrin - Tear You Apart":         LocData(BaseId.Skill+157,   "Act 1"),
+    "Siffrin - Rock Bottom":            LocData(BaseId.Skill+156,   "Act 1"),
+    "Mirabelle - Lovely Moving Cure":   LocData(BaseId.Skill+36,    "Act 1"),
+    "Mirabelle - Shining Life":         LocData(BaseId.Skill+37,    "Act 1"),
+    "Mirabelle - Mega Sparkle Heal":    LocData(BaseId.Skill+39,    "Act 1"),
+    "Isabeau - SO WEAK!!!":             LocData(BaseId.Skill+25,    "Act 1"),
+    "Isabeau - BREAK, BREAK!!!":        LocData(BaseId.Skill+26,    "Act 1"),
+    "Isabeau - NOT OVER YET!!!":        LocData(BaseId.Skill+28,    "Act 1"),
+    "Odile - Paper α V":                LocData(BaseId.Skill+46,    "Act 1"),
+    "Odile - Craft Buff":               LocData(BaseId.Skill+48,    "Act 1"),
+    "Odile - Craft Break":              LocData(BaseId.Skill+49,    "Act 1"),
 }
 
-dormont_table: Dict[str, Dict[str, str]] = {
-    "Act 1": {
-        "Reminder Note": None,
-        "Tutorial Kid Victory": None,
-        "Tutorial Kid Clean Sweep": None,
-        "Sky-Loving Kid": None,
-        "Flower Growing One": None,
-        "Drawing Kid": None,
-        "Bonnie Flower": "Bright Flower",
-        "Isabeau Flower": "Bright Flower",
-        "Mirabelle Flower": "Bright Flower",
-        "Odile Flower": "Bright Flower",
-        "Welcome to the show!": None,
-    },
+dormont_table: Dict[str, LocData] = {
+    "Reminder Note":            LocData(BaseId.Item+46, "Act 1"),
+    "Tutorial Kid Victory":     LocData(BaseId.Misc+1,  "Act 1"),
+    "Tutorial Kid Clean Sweep": LocData(BaseId.Misc+2,  "Act 1"),
+    "Sky-Loving Kid":           None,
+    "Flower Growing One":       None,
+    "Drawing Kid":              None,
+    "Bonnie Flower":            "Bright Flower",
+    "Isabeau Flower":           "Bright Flower",
+    "Mirabelle Flower":         "Bright Flower",
+    "Odile Flower":             "Bright Flower",
+    "Welcome to the show!":     None,
 
     "Act 2": {
         "Call Loop": None,  # Progression: Floor 1

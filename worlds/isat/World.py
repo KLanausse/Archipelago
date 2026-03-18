@@ -26,7 +26,7 @@ class InStarsAndTimeWeb(WebWorld):
 class InStarsAndTimeWorld(World):
     game = "In Stars And Time"
 
-    item_name_to_id = Items.item_table
+    item_name_to_id = Items.ITEM_TABLE
     location_name_to_id = Locations.location_table
     options_dataclass = Options.InStarsAndTimesOptions
 
@@ -42,6 +42,9 @@ class InStarsAndTimeWorld(World):
 
     def create_item(self, name: str) -> Items.InStarsAndTimeItem:
         return Items.create_item_with_correct_classification(self, name)
+
+    def get_filler_item_name(self) -> str:
+        return Items.get_random_filler_item_name(self)
 
 
     def fill_slot_data(self) -> Mapping[str, Any]:

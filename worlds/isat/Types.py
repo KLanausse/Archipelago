@@ -9,6 +9,7 @@ class BaseId(int):
     Item = 1677310 + 240
     Weapon = 1677310 + 240 + 100
     Armor = 1677310 + 240 + 100 + 60
+    Misc = 1677310 + 240 + 100 + 60 + 100
 
 class ItemType(Enum):
     Skill  = 0
@@ -26,12 +27,12 @@ class InStarsAndTimeItem(Item):
 
 class LocData(NamedTuple):
     id: Optional[int]
-    region: Optional[str]
-    rule: Optional[str]
+    act: Optional[str]
+    # region: Optional[str]
+    rule: str = None
 
 
 class ItemData(NamedTuple):
     id: Optional[int]
     classification: Optional[ItemClassification]
     type: Optional[ItemType]
-    quantity: int = 1

@@ -25,30 +25,32 @@ region_names = [
 
 def create_and_connect_regions(world: InStarsAndTimeWorld) -> None:
     create_all_regions(world)
-    connect_regions(world)
+    #connect_regions(world)
 
 def create_all_regions(world: InStarsAndTimeWorld) -> None:
-
     regions = [Region(name, world.player, world.multiworld) for name in region_names]
     world.multiworld.regions += regions
 
 def connect_regions(world: InStarsAndTimeWorld) -> None:
     dormont = world.get_region("Dormont")
     entrance = world.get_region("Entrance")
-    floor_1 = world.get_region("Floor 1 - Main Room")
-    floor_2 = world.get_region("Floor 2 - Main Room")
-    floor_3 = world.get_region("Floor 3 - Main Room")
-    the_end = world.get_region("The End")
+
+    floor_1_main_room = world.get_region("Floor 1 - Main Room")
+    floor_1_left_hallway = world.get_region("Floor 1 - Left Hallway")
 
     # One Ways.
     dormont_to_entrance = Entrance(world.player, "Dormont to Entrance", parent=dormont)
     dormont.exits.append(dormont_to_entrance)
     dormont_to_entrance.connect(entrance)
 
-    entrance.connect(floor_1, "Entrance to Floor 1", lambda state: state.has("Circle Key", world.player))
-    floor_1.connect(floor_2, "Floor 1 to Floor 1", lambda state: state.has("Broken Egg Key", world.player))
-    floor_2.connect(floor_3, "Floor 2 to Floor 1", lambda state: state.has("Scissors Key", world.player))
-    floor_3.connect(the_end, "Floor 3 to The End", lambda state: state.has("Knife Key", world.player))
+    # entrance_to_floor_1 = Entrance(world.player, "Floor 1", parent=entrance)
+    # entrance.exits.append(entrance_to_floor_1)
+    # entrance_to_floor_1.connect(floor_1_main_room)
+
+    entrance.connect(floor_1_main_room, "Entrance to Floor 1", lambda state: state.has("Circle Key", world.player))
+    floor_1_main_room.connect(floor_1_left_hallway, "Floor 1 Main Room to Floor 1 Left Hallway", lambda state: state.has("Egg Key", world.player))
+
+    # floor_1.connect(floor_2, "Floor 1 to Floor 1", lambda state: state.has("Broken Egg Key", world.player))
 
     # An even easier way is to use the region.connect helper.
     # overworld.connect(right_room, "Overworld to Right Room")

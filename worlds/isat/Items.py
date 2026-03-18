@@ -1,4 +1,6 @@
 from __future__ import annotations
+
+import random
 from typing import Dict, TYPE_CHECKING
 
 from BaseClasses import Item, ItemClassification
@@ -57,6 +59,38 @@ starting_items: Dict[str, ItemData] = {
     "Siffrin's Silver Coin":        ItemData(BaseId.Item+42,    ItemClassification.progression, ItemType.Item)
 }
 
+level_items: Dict[str, ItemData] = {
+    "Siffrin - Buy One Get One Three":  ItemData(BaseId.Skill+20,   ItemClassification.useful,  ItemType.Skill),
+    "Siffrin - Done Heal":              ItemData(BaseId.Skill+16,   ItemClassification.useful,  ItemType.Skill),
+    "Siffrin - In A While, Rockodile":  ItemData(BaseId.Skill+17,   ItemClassification.useful,  ItemType.Skill),
+    "Siffrin - Regener-ade":            ItemData(BaseId.Skill+155,  ItemClassification.useful,  ItemType.Skill),
+    "Siffrin - Rose Printed Glasses":   ItemData(BaseId.Skill+18,   ItemClassification.useful,  ItemType.Skill),
+    "Siffrin - Tear You Apart":         ItemData(BaseId.Skill+157,  ItemClassification.useful,  ItemType.Skill),
+    "Siffrin - Rock Bottom":            ItemData(BaseId.Skill+156,  ItemClassification.useful,  ItemType.Skill),
+    "Mirabelle - Lovely Moving Cure":   ItemData(BaseId.Skill+36,   ItemClassification.useful,  ItemType.Skill),
+    "Mirabelle - Shining Life":         ItemData(BaseId.Skill+37,   ItemClassification.useful,  ItemType.Skill),
+    "Mirabelle - Mega Sparkle Heal":    ItemData(BaseId.Skill+39,   ItemClassification.useful,  ItemType.Skill),
+    "Isabeau - SO WEAK!!!":             ItemData(BaseId.Skill+25,   ItemClassification.useful,  ItemType.Skill),
+    "Isabeau - BREAK, BREAK!!!":        ItemData(BaseId.Skill+26,   ItemClassification.useful,  ItemType.Skill),
+    "Isabeau - NOT OVER YET!!!":        ItemData(BaseId.Skill+28,   ItemClassification.useful,  ItemType.Skill),
+    "Odile - Paper α V":                ItemData(BaseId.Skill+46,   ItemClassification.useful,  ItemType.Skill),
+    "Odile - Craft Buff":               ItemData(BaseId.Skill+48,   ItemClassification.useful,  ItemType.Skill),
+    "Odile - Craft Break":              ItemData(BaseId.Skill+49,   ItemClassification.useful,  ItemType.Skill),
+}
+
+dormont_items: Dict[str, ItemData] = {
+    "Reminder Note": ItemData(BaseId.Item+46, ItemClassification.filler, ItemType.Item),
+    "Bright Flower": ItemData(BaseId.Item+43, ItemClassification.filler, ItemType.Item),
+}
+
+entrance_items: Dict[str, ItemData] = {
+    "Circle Key": ItemData(BaseId.Item+22,  ItemClassification.progression, ItemType.Item)
+}
+
+floor_1_items: Dict[str, ItemData] = {
+    "Egg Key": ItemData(BaseId.Item+23, ItemClassification.progression, ItemType.Item)
+}
+
 filler_items: Dict[str, ItemData] = {
     "Sour Tonic":           ItemData(BaseId.Item+2,     ItemClassification.filler, ItemType.Item),
     "Super Sour Tonic":     ItemData(BaseId.Item+3,     ItemClassification.filler, ItemType.Item),
@@ -72,23 +106,31 @@ filler_items: Dict[str, ItemData] = {
 }
 
 # This name could be confusing. TODO: Rename
-all_items = {
+ALL_ITEMS = {
     **starting_items,
+    **level_items,
+    **entrance_items,
+    **floor_1_items,
+    **filler_items
+}
+SHUFFLED_ITEMS = {
+    **level_items,
+    **entrance_items,
+    **floor_1_items,
     **filler_items
 }
 
 # Create Item Table
-item_table = {name: data.id for name, data in all_items.items()}
+ITEM_TABLE = {name: data.id for name, data in ALL_ITEMS.items()}
 
 def get_random_filler_item_name(world: InStarsAndTimeWorld):
-    print("update get_random_filler_item_name lol")
-    return "Sour Tonic" # Temp
+    return random.choice([name for name, data in filler_items]) # Temp
 
 def create_item_with_correct_classification(world: InStarsAndTimeWorld, name: str) -> InStarsAndTimeItem:
-    return InStarsAndTimeItem(name, all_items[name].classification, all_items[name].id, world.player)
+    return InStarsAndTimeItem(name, ALL_ITEMS[name].classification, ALL_ITEMS[name].id, world.player)
 
 def create_all_items(world: InStarsAndTimeWorld) -> None:
-    itempool: list[Item] = [ world.create_item(name) for name, data in all_items.items() ]
+    itempool: list[Item] = [world.create_item(name) for name, data in SHUFFLED_ITEMS.items()]
 
     # Based off of APQuest Code
     number_of_items = len(itempool)
@@ -99,5 +141,5 @@ def create_all_items(world: InStarsAndTimeWorld) -> None:
     world.multiworld.itempool += itempool
 
     # Starting Items
-    for name, data in starting_items:
+    for name in starting_items:
         world.push_precollected(world.create_item(name))

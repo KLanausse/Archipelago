@@ -5,7 +5,7 @@ from BaseClasses import MultiWorld, Item, Tutorial
 from worlds.AutoWorld import World, WebWorld
 
 # Imports of your world's files must be relative.
-from . import Locations, Items, Options, Regions
+from . import Locations, Items, Options, Regions, Rules
 
 
 class InStarsAndTimeWeb(WebWorld):
@@ -27,7 +27,7 @@ class InStarsAndTimeWorld(World):
     game = "In Stars And Time"
 
     item_name_to_id = Items.ITEM_TABLE
-    location_name_to_id = Locations.location_table
+    location_name_to_id = Locations.LOCATION_TABLE
     options_dataclass = Options.InStarsAndTimesOptions
 
     origin_region_name = "Dormont"
@@ -46,6 +46,8 @@ class InStarsAndTimeWorld(World):
     def get_filler_item_name(self) -> str:
         return Items.get_random_filler_item_name(self)
 
+    def set_rules(self) -> None:
+        Rules.set_all_rules(self)
 
     def fill_slot_data(self) -> Mapping[str, Any]:
         # If you need access to the player's chosen options on the client side, there is a helper for that.

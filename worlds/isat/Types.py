@@ -29,7 +29,7 @@ class LocData(NamedTuple):
     id: Optional[int]
     act: Optional[str]
     # region: Optional[str]
-    rule: str = None
+    rule: Optional[any] = None
 
 
 class ItemData(NamedTuple):

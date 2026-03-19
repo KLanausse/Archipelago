@@ -79,8 +79,9 @@ level_items: Dict[str, ItemData] = {
 }
 
 dormont_items: Dict[str, ItemData] = {
-    "Reminder Note": ItemData(BaseId.Item+46, ItemClassification.filler, ItemType.Item),
-    "Bright Flower": ItemData(BaseId.Item+43, ItemClassification.filler, ItemType.Item),
+    "Bright Flower":        ItemData(BaseId.Item+43, ItemClassification.filler, ItemType.Item),
+    "Reminder Note":        ItemData(BaseId.Item+46, ItemClassification.filler, ItemType.Item),
+    "Four-Pointed Leaf":    ItemData(BaseId.Item+47, ItemClassification.filler, ItemType.Item),
 }
 
 entrance_items: Dict[str, ItemData] = {
@@ -124,7 +125,7 @@ SHUFFLED_ITEMS = {
 ITEM_TABLE = {name: data.id for name, data in ALL_ITEMS.items()}
 
 def get_random_filler_item_name(world: InStarsAndTimeWorld):
-    return random.choice([name for name, data in filler_items]) # Temp
+    return random.choice([name for name in filler_items]) # Temp
 
 def create_item_with_correct_classification(world: InStarsAndTimeWorld, name: str) -> InStarsAndTimeItem:
     return InStarsAndTimeItem(name, ALL_ITEMS[name].classification, ALL_ITEMS[name].id, world.player)

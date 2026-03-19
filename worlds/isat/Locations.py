@@ -1,10 +1,9 @@
 from __future__ import annotations
-from typing import TYPE_CHECKING, NamedTuple, Optional, List, Dict
+from typing import TYPE_CHECKING, Dict
 
-from BaseClasses import ItemClassification, Location
+from BaseClasses import Location
 
 from .Types import LocData, BaseId
-from .Items import ITEM_TABLE
 
 if TYPE_CHECKING:
     from .World import InStarsAndTimeWorld
@@ -12,9 +11,6 @@ if TYPE_CHECKING:
 
 class InStarsAndTimeLocation(Location):
     game = "In Stars and Time"
-
-def get_location_names_with_ids(location_names: list[str]) -> dict[str, int | None]:
-    return {location_name: location_name_to_id[location_name] for location_name in location_names}
 
 # Location IDs should match their item counterpart. If there is none associated, use BaseId.Misc
 level_table: Dict[str, LocData] = {  # Levels
@@ -37,96 +33,92 @@ level_table: Dict[str, LocData] = {  # Levels
 }
 
 dormont_table: Dict[str, LocData] = {
-    "Reminder Note":            LocData(BaseId.Item+46, "Act 1"),
-    "Tutorial Kid Victory":     LocData(BaseId.Misc+1,  "Act 1"),
-    "Tutorial Kid Clean Sweep": LocData(BaseId.Misc+2,  "Act 1"),
-    "Sky-Loving Kid":           None,
-    "Flower Growing One":       None,
-    "Drawing Kid":              None,
-    "Bonnie Flower":            "Bright Flower",
-    "Isabeau Flower":           "Bright Flower",
-    "Mirabelle Flower":         "Bright Flower",
-    "Odile Flower":             "Bright Flower",
-    "Welcome to the show!":     None,
+    "Dormont - Reminder Note":            LocData(BaseId.Item+46, "Act 1"),
+    "Dormont - Tutorial Kid Victory":     LocData(BaseId.Misc+1,  "Act 1"),
+    "Dormont - Tutorial Kid Clean Sweep": LocData(BaseId.Misc+2,  "Act 1"),
+    "Dormont - Sky-Loving Kid":           LocData(BaseId.Item+47, "Act 1"),
+    "Dormont - Flower Growing One":       LocData(BaseId.Item+43, "Act 1"),
+    "Dormont - Drawing Kid":              LocData(BaseId.Item+54, "Act 1"),
+    "Dormont - Bonnie Flower":            LocData(BaseId.Misc+3,  "Act 1",    lambda state: state.has("Bright Flower")),
+    "Dormont - Isabeau Flower":           LocData(BaseId.Misc+4,  "Act 1",    lambda state: state.has("Bright Flower")),
+    "Dormont - Mirabelle Flower":         LocData(BaseId.Misc+5,  "Act 1",    lambda state: state.has("Bright Flower")),
+    "Dormont - Odile Flower":             LocData(BaseId.Misc+6,  "Act 1",    lambda state: state.has("Bright Flower")),
+    "Dormont - Welcome to the show!":     LocData(BaseId.Misc+7,  "Act 1"),
 
-    "Act 2": {
-        "Call Loop": None,  # Progression: Floor 1
-        "Warning! Sharp!": None,  # Progression: Floor 1
+    # Act 2
+    # "Call Loop": None,  # Progression: Floor 1
+    # "Warning! Sharp!": None,  # Progression: Floor 1
+    # "Loop Flower": "Bright Flower",
+    # # Redo this. Likely w/ a string array
+    # "No thanks, stardust!": "Any Souvenir",  # Progression: Floor 1
+    # "Memory of Fishing": None,
+    # "Shopkeeper's Openphrase": None,  # Progression: Shopkeeper
+    # "Beautiful One's Cupboard": None,
+    # "Castle-Loving One's Sidequest": None,  # Progression: First Issue
+    # "Stylish One's Sidequest": None,  # Progression: Stylish One
+    # "Blind One's House": "Change Openphrase",  # Progression: Openphrase
+    # "Opened Fanmail": "Loving Fanmail",
 
-        "Loop Flower": "Bright Flower",
-        # Redo this. Likely w/ a string array
-        "No thanks, stardust!": "Any Souvenir",  # Progression: Floor 1
+    # Act 3
+    # "Memory of Defeat": None,  # Progression: King
+    # "Bonnie's Friendquest": None,  # Progression: Victory
+    # "Encore!": None,  # Progression: Victory
+    # "Memory of Touch": None,  # Progression: Confession
+    # "Mirabelle's Friendquest": None,  # Progression: Mirabelle
+    # "Odile's Friendquest": None,  # Progression: Odile
+    # "Isabeau's Friendquest": None,  # Progression: Loved
+    # "In this moment...": None,  # Progression: Loved
+    # "...You are loved.": None,  # Progression: Loved
+    # "Memory of Puns": None,  # Progression: Betrayed
+    # "Memory of Memories": None,  # Progression: Betrayed
+    # "Mystery Book": None,  # Progression: Betrayed
 
-        "Memory of Fishing": None,
-        "Shopkeeper's Openphrase": None,  # Progression: Shopkeeper
-        "Beautiful One's Cupboard": None,
-        "Castle-Loving One's Sidequest": None,  # Progression: First Issue
-        "Stylish One's Sidequest": None,  # Progression: Stylish One
-        "Blind One's House": "Change Openphrase",  # Progression: Openphrase
-        "Opened Fanmail": "Loving Fanmail",
-    },
 
-    "Act 3": {
-        "Memory of Defeat": None,  # Progression: King
+    # Act 4
+    # "What was that about...?": None,  # Progression: Incident
+    # "Nostalgie": None,
+    # "IS THIS IT?": None,
+    # "Here's some change": None,
 
-        "Bonnie's Friendquest": None,  # Progression: Victory
-        "Encore!": None,  # Progression: Victory
-        "Memory of Touch": None,  # Progression: Confession
+    # Act 5
 
-        "Mirabelle's Friendquest": None,  # Progression: Mirabelle
-        "Odile's Friendquest": None,  # Progression: Odile
-        "Isabeau's Friendquest": None,  # Progression: Loved
-
-        "In this moment...": None,  # Progression: Loved
-        "...You are loved.": None,  # Progression: Loved
-
-        "Memory of Puns": None,  # Progression: Betrayed
-        "Memory of Memories": None,  # Progression: Betrayed
-        "Mystery Book": None,  # Progression: Betrayed
-    },
-
-    "Act 4": {
-        "What was that about...?": None,  # Progression: Incident
-        "Nostalgie": None,
-        "IS THIS IT?": None,
-        "Here's some change": None,
-    },
-
-    "Act 5": {
-    },
-
-    "Act 6": {
-        "Loop's Coin": None,  # Progression: Two Hats
-        "Loop Battle": "Loop's Silver Coin",  # Progression: Floor 1
-    }
+    # Act 6
+    # "Loop's Coin": None,  # Progression: Two Hats
+    # "Loop Battle": "Loop's Silver Coin",  # Progression: Floor 1
 
 }
 
-entrance_table: Dict[str, Dict[str, str]] = {
-    "Main Room - Circle Key"
+entrance_table: Dict[str, LocData] = {
+    "Entrance - Main Room - Circle Key":    LocData(BaseId.Item+22, "Act 1"),
+    "Entrance - Storage Room - Vial 1":     LocData(BaseId.Misc+8,  "Act 1"),
+    "Entrance - Storage Room - Vial 2":     LocData(BaseId.Misc+9,  "Act 1"),
+    "Entrance - Storage Room - Vial 3":     LocData(BaseId.Misc+10, "Act 1"),
+    "Entrance - Storage Room - Vial 4":     LocData(BaseId.Misc+11, "Act 1"),
+    "Entrance - Jackpot!":                  LocData(BaseId.Misc+12, "Act 1"),
 }
 
 all_locations = {
-    "Level": level_table,
-    "Dormont": dormont_table
+    **level_table,
+    **dormont_table,
+    **entrance_table
 }
 
-def create_all_locations(world: InStarsAndTimeWorld):
-    dormont = world.get_region("Dormont")
-    dormont_locations = get_location_names_with_ids(["Dormont - Reminder Note", "Dormont - Tutorial Kid Victory"])
-    dormont.add_locations(dormont_locations, InStarsAndTimeLocation)
-    print(f"create_all_locations stub...")
+# Create location table
+LOCATION_TABLE = {location_name: all_locations[location_name].id for location_name in all_locations}
 
-# Create Location Table
-location_count = 0
-location_table = {}
-location_name_to_id = {}
-for location_set in all_locations:
-    for act in all_locations[location_set]:
-        for location in all_locations[location_set][act]:
-            location_table[f"{location_set} - {location}"] = (BaseId.Base + location_count,
-                                                                     f"{act} - {location_set}",
-                                                                     all_locations[location_set][act][location]),
-            location_name_to_id[f"{location_set} - {location}"] = BaseId.Base + location_count
-            # print(f"\"{location_set} - {location}\": LocData({base_id+location_count}, \"{act} - {location_set}\", {all_locations[location_set][act][location]})")
-            location_count += 1
+def get_location_names_with_ids(location_names: list[str]) -> dict[str, int | None]:
+    return {location_name: all_locations[location_name].id for location_name in location_names}
+
+def create_all_locations(world: InStarsAndTimeWorld):
+    level = world.get_region("Level")
+    level_locations = get_location_names_with_ids([location_name for location_name in level_table])
+    level.add_locations(level_locations, InStarsAndTimeLocation)
+
+    dormont = world.get_region("Dormont")
+    dormont_locations = get_location_names_with_ids([location_name for location_name in dormont_table])
+    dormont.add_locations(dormont_locations, InStarsAndTimeLocation)
+
+    entrance = world.get_region("Entrance")
+    entrance_locations = get_location_names_with_ids([location_name for location_name in entrance_table])
+    entrance.add_locations(entrance_locations, InStarsAndTimeLocation)
+    print(f"In Stars And Time: create_all_locations stub...")

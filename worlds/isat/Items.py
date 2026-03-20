@@ -30,7 +30,7 @@ starting_items: Dict[str, ItemData] = {
     "Artsy Silent Burst":           ItemData(BaseId.Skill+33,   ItemClassification.useful,      ItemType.Skill),
     "Pretty Buffy Friend":          ItemData(BaseId.Skill+34,   ItemClassification.useful,      ItemType.Skill),
     "Super Sparkle Heal":           ItemData(BaseId.Skill+35,   ItemClassification.useful,      ItemType.Skill),
-    "Memory of Mirabelle":          ItemData(BaseId.Skill+42,   ItemClassification.useful,      ItemType.Skill),
+    "Memory of Mirabelle":          ItemData(BaseId.Armor+42,   ItemClassification.useful,      ItemType.Skill),
     "Shiny Rapier":                 ItemData(BaseId.Weapon+3,   ItemClassification.useful,      ItemType.Weapon),
     "Big Bow":                      ItemData(BaseId.Armor+3,    ItemClassification.useful,      ItemType.Armor),
     "SMASH!!!":                     ItemData(BaseId.Skill+22,   ItemClassification.useful,      ItemType.Skill),
@@ -79,9 +79,16 @@ level_items: Dict[str, ItemData] = {
 }
 
 dormont_items: Dict[str, ItemData] = {
-    "Bright Flower":        ItemData(BaseId.Item+43, ItemClassification.filler, ItemType.Item),
-    "Reminder Note":        ItemData(BaseId.Item+46, ItemClassification.filler, ItemType.Item),
-    "Four-Pointed Leaf":    ItemData(BaseId.Item+47, ItemClassification.filler, ItemType.Item),
+    "Loving Fanmail":           ItemData(BaseId.Item+55,    ItemClassification.progression,    ItemType.Item),
+    "Four-Pointed Leaf":        ItemData(BaseId.Item+47,    ItemClassification.filler,         ItemType.Item),
+    "Bright Flower":            ItemData(BaseId.Item+43,    ItemClassification.progression,    ItemType.Item),
+    "Bright Friendship Doodle": ItemData(BaseId.Item+54,    ItemClassification.filler,         ItemType.Item),
+    "Long Thingy-Thing":        ItemData(BaseId.Item+69,    ItemClassification.progression,    ItemType.Item),
+    "Reminder Note":            ItemData(BaseId.Item+46,    ItemClassification.filler,         ItemType.Item),
+    "Memory of Touch":          ItemData(BaseId.Armor+37,   ItemClassification.filler,        ItemType.Armor),
+    "Memory of Fishing":        ItemData(BaseId.Armor+38,   ItemClassification.useful,        ItemType.Armor),
+    "Memory of Defeat":         ItemData(BaseId.Armor+83,   ItemClassification.useful,        ItemType.Armor),
+    "Memory of Memories":       ItemData(BaseId.Armor+87,   ItemClassification.useful,        ItemType.Armor),
 }
 
 entrance_items: Dict[str, ItemData] = {
@@ -89,9 +96,9 @@ entrance_items: Dict[str, ItemData] = {
 }
 
 floor_1_items: Dict[str, ItemData] = {
-    "Teardrop Star Crest (Teardrop)":  ItemData(BaseId.Item+32, ItemClassification.progression, ItemType.Item),
-    "Egg Key":              ItemData(BaseId.Item+23, ItemClassification.progression, ItemType.Item),
-    "Opaque Glasses":       ItemData(BaseId.Item+20, ItemClassification.useful, ItemType.Item),
+    "Teardrop Star Crest":              ItemData(BaseId.Item+32, ItemClassification.progression, ItemType.Item),
+    "Egg Key":                          ItemData(BaseId.Item+23, ItemClassification.progression, ItemType.Item),
+    "Opaque Glasses":                   ItemData(BaseId.Item+20, ItemClassification.useful, ItemType.Item),
 }
 
 filler_items: Dict[str, ItemData] = {
@@ -106,21 +113,23 @@ filler_items: Dict[str, ItemData] = {
     "Super Sweet Tonic":    ItemData(BaseId.Item+10,    ItemClassification.filler, ItemType.Item),
     "Salty Broth":          ItemData(BaseId.Item+11,    ItemClassification.filler, ItemType.Item),
 
+    "Memory of Skirmish":   ItemData(BaseId.Item+66,    ItemClassification.filler, ItemType.Item),
+    "Memory of Battle":     ItemData(BaseId.Item+67,    ItemClassification.filler, ItemType.Item),
+    "Memory of Conflict":   ItemData(BaseId.Item+68,    ItemClassification.filler, ItemType.Item),
 }
 
 # This name could be confusing. TODO: Rename
-ALL_ITEMS = {
-    **starting_items,
+SHUFFLED_ITEMS = {
     **level_items,
+    **dormont_items,
     **entrance_items,
     **floor_1_items,
     **filler_items
 }
-SHUFFLED_ITEMS = {
-    **level_items,
-    **entrance_items,
-    **floor_1_items,
-    **filler_items
+
+ALL_ITEMS = {
+    **starting_items,
+    **SHUFFLED_ITEMS
 }
 
 # Create Item Table
@@ -143,6 +152,4 @@ def create_all_items(world: InStarsAndTimeWorld) -> None:
 
     world.multiworld.itempool += itempool
 
-    # Starting Items
-    for name in starting_items:
-        world.push_precollected(world.create_item(name))
+    # Sta

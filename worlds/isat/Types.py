@@ -29,7 +29,8 @@ class LocData(NamedTuple):
     id: Optional[int]
     act: Optional[str]
     # region: Optional[str]
-    rule: Optional[any] = None
+    rule_type: Optional[str] = None
+    rule_args: Optional[any] = None
 
 
 class ItemData(NamedTuple):

@@ -97,6 +97,8 @@ entrance_table: Dict[str, LocData] = {
     "Entrance - Jackpot!":                  LocData(BaseId.Misc+12, "Act 1"),
 }
 
+
+
 all_locations = {
     **level_table,
     **dormont_table,

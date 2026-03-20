@@ -89,7 +89,9 @@ entrance_items: Dict[str, ItemData] = {
 }
 
 floor_1_items: Dict[str, ItemData] = {
-    "Egg Key": ItemData(BaseId.Item+23, ItemClassification.progression, ItemType.Item)
+    "Teardrop Star Crest (Teardrop)":  ItemData(BaseId.Item+32, ItemClassification.progression, ItemType.Item),
+    "Egg Key":              ItemData(BaseId.Item+23, ItemClassification.progression, ItemType.Item),
+    "Opaque Glasses":       ItemData(BaseId.Item+20, ItemClassification.useful, ItemType.Item),
 }
 
 filler_items: Dict[str, ItemData] = {

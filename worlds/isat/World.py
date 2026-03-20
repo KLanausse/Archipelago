@@ -9,10 +9,8 @@ from . import Locations, Items, Options, Regions, Rules
 
 
 class InStarsAndTimeWeb(WebWorld):
-    # Theres a few different themes so have fun with it
     theme = "grassFlowers"
 
-    # You shouldnt have to change much here except the name at the bottom!
     tutorials = [Tutorial(
         "Multiworld Setup Guide",
         "A guide to setting up In Stars And Time for Archipelago. "

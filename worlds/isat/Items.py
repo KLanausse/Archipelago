@@ -109,6 +109,13 @@ dormont_items: Dict[str, ItemData] = {
     "Change Openphrase":                ItemData(BaseId.Misc+17,    ItemClassification.progression, ItemType.Variable),
     "Saucepan":                         ItemData(BaseId.Item+34,    ItemClassification.useful,      ItemType.Item),
     "Cast Iron Pan":                    ItemData(BaseId.Item+35,    ItemClassification.useful,      ItemType.Item),
+    "Memory of Emptiness":              ItemData(BaseId.Armor+88,   ItemClassification.progression, ItemType.Armor),
+    "(Rock.)":                          ItemData(BaseId.Skill+183,  ItemClassification.useful,      ItemType.Skill),
+    "(Paper.)":                         ItemData(BaseId.Skill+184,  ItemClassification.useful,      ItemType.Skill),
+    "(Scissors.)":                      ItemData(BaseId.Skill+182,  ItemClassification.useful,      ItemType.Skill),
+    "(Breathe.)":                       ItemData(BaseId.Skill+185,  ItemClassification.useful,      ItemType.Skill),
+    "(Heal.)":                          ItemData(BaseId.Skill+186,  ItemClassification.useful,      ItemType.Skill),
+
 }
 
 entrance_items: Dict[str, ItemData] = {
@@ -133,6 +140,55 @@ floor_1_items: Dict[str, ItemData] = {
     "Memory of Keys":       ItemData(BaseId.Item+33,    ItemClassification.filler,      ItemType.Armor),
 }
 
+floor_2_items: Dict[str, ItemData] = {
+    "Memory of Snacks":         ItemData(BaseId.Armor+73,   ItemClassification.useful,      ItemType.Armor),
+    "Crying Key":               ItemData(BaseId.Item+30,    ItemClassification.progression, ItemType.Item),
+    "Clock Star Crest":         ItemData(BaseId.Item+33,    ItemClassification.progression, ItemType.Item),
+    "Garden Scissors":          ItemData(BaseId.Weapon+9,   ItemClassification.useful,      ItemType.Weapon),
+    "Rock Key":                 ItemData(BaseId.Item+25,    ItemClassification.progression, ItemType.Item),
+    "Bonding Earring":          ItemData(BaseId.Item+60,    ItemClassification.progression, ItemType.Item),
+    "Heavy Book":               ItemData(BaseId.Weapon+26,  ItemClassification.useful,      ItemType.Weapon),
+    "Paper Key":                ItemData(BaseId.Item+26,    ItemClassification.progression, ItemType.Item),
+    "Crumpled Poem":            ItemData(BaseId.Item+45,    ItemClassification.filler,      ItemType.Item),
+    "Adorable Moving Shield":   ItemData(BaseId.Skill+38,   ItemClassification.progression, ItemType.Skill),
+    "Broken Doll":              ItemData(BaseId.Item+56,    ItemClassification.filler,      ItemType.Item),
+    "Drop Earring":             ItemData(BaseId.Armor+12,   ItemClassification.filler,      ItemType.Armor),
+    "Shiny Piece of Glass":     ItemData(BaseId.Item+44,    ItemClassification.filler,      ItemType.Item),
+    "Scissors Key":             ItemData(BaseId.Item+27,    ItemClassification.progression, ItemType.Item),
+    "Memory of Learning":       ItemData(BaseId.Armor+45,   ItemClassification.useful,      ItemType.Armor),
+}
+
+floor_3_items: Dict[str, ItemData] = {
+    "Memory of Promise":        ItemData(BaseId.Armor+74,   ItemClassification.useful,      ItemType.Armor),
+    "Empty Key":                ItemData(BaseId.Item+31,    ItemClassification.filler,      ItemType.Item),
+    "Papier-mâché Hands":       ItemData(BaseId.Weapon+16,  ItemClassification.useful,      ItemType.Weapon),
+    "Lumpy Clay":               ItemData(BaseId.Item+48,    ItemClassification.filler,      ItemType.Item),
+    "Massive Chain":            ItemData(BaseId.Item+52,    ItemClassification.progression, ItemType.Item),
+    "Mirror Picture":           ItemData(BaseId.Item+49,    ItemClassification.filler,      ItemType.Item),
+    "Smiling Key":              ItemData(BaseId.Item+28,    ItemClassification.progression, ItemType.Item),
+    "Starry Hat":               ItemData(BaseId.Armor+10,   ItemClassification.useful,      ItemType.Armor),
+    "Angry Key":                ItemData(BaseId.Item+29,    ItemClassification.progression, ItemType.Item),
+    "Short Gizmo-Gadget":       ItemData(BaseId.Item+58,    ItemClassification.progression, ItemType.Item),
+    "Double Star Crest":        ItemData(BaseId.Item+34,    ItemClassification.progression, ItemType.Item),
+    "Openphrase123 Openphrase": ItemData(BaseId.Misc+56,    ItemClassification.progression, ItemType.Variable),
+    "KeyKnife":                 ItemData(BaseId.Item+35,    ItemClassification.progression, ItemType.Item),
+    "Memory of Ghosts":         ItemData(BaseId.Armor+36,   ItemClassification.filler,      ItemType.Armor),
+    "KnifeKey":                 ItemData(BaseId.Weapon+12,  ItemClassification.useful,      ItemType.Weapon),
+    "Memory of Change God":     ItemData(BaseId.Armor+44,   ItemClassification.useful,      ItemType.Armor),
+    "Memory of Reflection":     ItemData(BaseId.Armor+53,   ItemClassification.useful,      ItemType.Armor),
+    "Memory of First Strike":   ItemData(BaseId.Armor+65,   ItemClassification.useful,      ItemType.Armor),
+}
+
+the_end_items: Dict[str, ItemData] = {
+    "Secret Ingredient":        ItemData(BaseId.Item+59,    ItemClassification.progression, ItemType.Item),
+    "Memory of Safe Rooms":     ItemData(BaseId.Armor+75,   ItemClassification.useful,      ItemType.Armor),
+    "Memory of Butt Kicking":   ItemData(BaseId.Armor+43,   ItemClassification.useful,      ItemType.Armor),
+    "Bomb":                     ItemData(BaseId.Item+13,    ItemClassification.useful,      ItemType.Item),
+    "Memory of Victory":        ItemData(BaseId.Armor+84,   ItemClassification.useful,      ItemType.Armor),
+    "Memory of A Journey":      ItemData(BaseId.Armor+89,   ItemClassification.useful,      ItemType.Armor),
+    "Eternal Snacks":           ItemData(BaseId.Item+61,    ItemClassification.filler,      ItemType.Item),
+}
+
 filler_items: Dict[str, ItemData] = {
     "Sour Tonic":           ItemData(BaseId.Item+2,     ItemClassification.filler, ItemType.Item),
     "Super Sour Tonic":     ItemData(BaseId.Item+3,     ItemClassification.filler, ItemType.Item),
@@ -155,7 +211,10 @@ SHUFFLED_ITEMS = {
     **level_items,
     **dormont_items,
     **entrance_items,
-    **floor_1_items
+    **floor_1_items,
+    **floor_2_items,
+    **floor_3_items,
+    **the_end_items,
 }
 
 ALL_ITEMS = {

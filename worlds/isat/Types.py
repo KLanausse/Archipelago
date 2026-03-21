@@ -16,8 +16,9 @@ class ItemType(Enum):
     Item   = 1
     Weapon = 2
     Armor  = 3
-    Memory = 4
-    Souvenirs = 5
+    Variable = 4
+    Switch = 5
+    Achievement = 6
 
 class InStarsAndTimeLocation(Location):
     game = "In Stars And Time"

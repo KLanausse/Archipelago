@@ -79,26 +79,58 @@ level_items: Dict[str, ItemData] = {
 }
 
 dormont_items: Dict[str, ItemData] = {
-    "Loving Fanmail":           ItemData(BaseId.Item+55,    ItemClassification.progression,    ItemType.Item),
-    "Four-Pointed Leaf":        ItemData(BaseId.Item+47,    ItemClassification.filler,         ItemType.Item),
-    "Bright Flower":            ItemData(BaseId.Item+43,    ItemClassification.progression,    ItemType.Item),
-    "Bright Friendship Doodle": ItemData(BaseId.Item+54,    ItemClassification.filler,         ItemType.Item),
-    "Long Thingy-Thing":        ItemData(BaseId.Item+69,    ItemClassification.progression,    ItemType.Item),
-    "Reminder Note":            ItemData(BaseId.Item+46,    ItemClassification.filler,         ItemType.Item),
-    "Memory of Touch":          ItemData(BaseId.Armor+37,   ItemClassification.filler,        ItemType.Armor),
-    "Memory of Fishing":        ItemData(BaseId.Armor+38,   ItemClassification.useful,        ItemType.Armor),
-    "Memory of Defeat":         ItemData(BaseId.Armor+83,   ItemClassification.useful,        ItemType.Armor),
-    "Memory of Memories":       ItemData(BaseId.Armor+87,   ItemClassification.useful,        ItemType.Armor),
+    "First Issue":                      ItemData(BaseId.Weapon+27,  ItemClassification.useful,      ItemType.Weapon),
+    "Loving Fanmail":                   ItemData(BaseId.Item+55,    ItemClassification.progression, ItemType.Item),
+    "Four-Pointed Leaf":                ItemData(BaseId.Item+47,    ItemClassification.filler,      ItemType.Item),
+    "Bright Flower":                    ItemData(BaseId.Item+43,    ItemClassification.progression, ItemType.Item),
+    "Bright Friendship Doodle":         ItemData(BaseId.Item+54,    ItemClassification.filler,      ItemType.Item),
+    "Long Thingy-Thing":                ItemData(BaseId.Item+69,    ItemClassification.progression, ItemType.Item),
+    "Reminder Note":                    ItemData(BaseId.Item+46,    ItemClassification.filler,      ItemType.Item),
+    "Memory of Touch":                  ItemData(BaseId.Armor+37,   ItemClassification.filler,      ItemType.Armor),
+    "Memory of Fishing":                ItemData(BaseId.Armor+38,   ItemClassification.useful,      ItemType.Armor),
+    "Memory of Defeat":                 ItemData(BaseId.Armor+83,   ItemClassification.useful,      ItemType.Armor),
+    "Memory of Memories":               ItemData(BaseId.Armor+87,   ItemClassification.progression, ItemType.Armor),
+    "Memory of Faith":                  ItemData(BaseId.Armor+50,   ItemClassification.useful,      ItemType.Armor),
+    "Holy Care Shield":                 ItemData(BaseId.Skill+40,   ItemClassification.progression, ItemType.Skill),
+    "Memory of Puns":                   ItemData(BaseId.Armor+55,   ItemClassification.useful,      ItemType.Armor),
+    "Memory of Stargazing":             ItemData(BaseId.Armor+60,   ItemClassification.useful,      ItemType.Armor),
+    "WE WILL WIN!!!":                   ItemData(BaseId.Skill+29,   ItemClassification.useful,      ItemType.Skill),
+    "Memory of Secret Quest":           ItemData(BaseId.Armor+70,   ItemClassification.useful,      ItemType.Armor),
+    "Craft Break α":                    ItemData(BaseId.Skill+50,   ItemClassification.useful,      ItemType.Skill),
+    "Stylish Bow":                      ItemData(BaseId.Armor+16,   ItemClassification.useful,      ItemType.Armor),
+    "Griddle Pan":                      ItemData(BaseId.Weapon+32,  ItemClassification.useful,      ItemType.Weapon),
+    "Your Dagger":                      ItemData(BaseId.Item+12,    ItemClassification.progression, ItemType.Item),
+    "(Call Loop.)":                     ItemData(BaseId.Skill+160,  ItemClassification.filler,      ItemType.Skill),
+    "Stostorage Roomoom Openphrase":    ItemData(BaseId.Misc+3,     ItemClassification.progression, ItemType.Variable),
+    "Memory of Looping":                ItemData(BaseId.Armor+70,   ItemClassification.useful,      ItemType.Armor),
+    "Loop's Silver Coin":               ItemData(BaseId.Item+62,    ItemClassification.progression, ItemType.Item),
+    "Memory of Family":                 ItemData(BaseId.Armor+86,   ItemClassification.useful,      ItemType.Armor),
+    "(Just attack.)":                   ItemData(BaseId.Skill+13,   ItemClassification.useful,      ItemType.Skill),
+    "Change Openphrase":                ItemData(BaseId.Misc+17,    ItemClassification.progression, ItemType.Variable),
+    "Saucepan":                         ItemData(BaseId.Item+34,    ItemClassification.useful,      ItemType.Item),
+    "Cast Iron Pan":                    ItemData(BaseId.Item+35,    ItemClassification.useful,      ItemType.Item),
 }
 
 entrance_items: Dict[str, ItemData] = {
-    "Circle Key": ItemData(BaseId.Item+22,  ItemClassification.progression, ItemType.Item)
+    "Memory of Sadnesses":  ItemData(BaseId.Armor+32,   ItemClassification.useful,      ItemType.Armor),
+    "Circle Key":           ItemData(BaseId.Item+22,    ItemClassification.progression, ItemType.Item),
+    "Bell Pendant":         ItemData(BaseId.Item+51,    ItemClassification.progression, ItemType.Item),
+    "Memory of Tonics":     ItemData(BaseId.Armor+63,   ItemClassification.useful,      ItemType.Armor),
 }
 
 floor_1_items: Dict[str, ItemData] = {
-    "Teardrop Star Crest":              ItemData(BaseId.Item+32, ItemClassification.progression, ItemType.Item),
-    "Egg Key":                          ItemData(BaseId.Item+23, ItemClassification.progression, ItemType.Item),
-    "Opaque Glasses":                   ItemData(BaseId.Item+20, ItemClassification.useful, ItemType.Item),
+    "Memory of Barrels":    ItemData(BaseId.Armor+39,   ItemClassification.useful,      ItemType.Armor),
+    "Memory of Pillars":    ItemData(BaseId.Armor+40,   ItemClassification.useful,      ItemType.Armor),
+    "Teardrop Star Crest":  ItemData(BaseId.Item+32,    ItemClassification.progression, ItemType.Item),
+    "Egg Key":              ItemData(BaseId.Item+23,    ItemClassification.progression, ItemType.Item),
+    "Wok":                  ItemData(BaseId.Weapon+33,  ItemClassification.useful,      ItemType.Weapon),
+    "Needle Sword":         ItemData(BaseId.Weapon+20,  ItemClassification.useful,      ItemType.Weapon),
+    "Sharpening Stone":     ItemData(BaseId.Item+50,    ItemClassification.progression, ItemType.Item),
+    "Drawn Card":           ItemData(BaseId.Item+53,    ItemClassification.filler,      ItemType.Item),
+    "Broken Egg Key":       ItemData(BaseId.Item+24,    ItemClassification.progression, ItemType.Item),
+    "Pillow Hat":           ItemData(BaseId.Armor+24,   ItemClassification.useful,      ItemType.Armor),
+    "Opaque Glasses":       ItemData(BaseId.Item+20,    ItemClassification.useful,      ItemType.Armor),
+    "Memory of Keys":       ItemData(BaseId.Item+33,    ItemClassification.filler,      ItemType.Armor),
 }
 
 filler_items: Dict[str, ItemData] = {
@@ -123,13 +155,13 @@ SHUFFLED_ITEMS = {
     **level_items,
     **dormont_items,
     **entrance_items,
-    **floor_1_items,
-    **filler_items
+    **floor_1_items
 }
 
 ALL_ITEMS = {
     **starting_items,
-    **SHUFFLED_ITEMS
+    **SHUFFLED_ITEMS,
+    **filler_items
 }
 
 # Create Item Table

@@ -235,6 +235,15 @@ def create_item_with_correct_classification(world: InStarsAndTimeWorld, name: st
 def create_all_items(world: InStarsAndTimeWorld) -> None:
     itempool: list[Item] = [world.create_item(name) for name, data in SHUFFLED_ITEMS.items()]
 
+    # Starting Items
+    match world.options.starting_craft:
+        case 0:
+            for name in starting_items:
+                world.push_precollected(world.create_item(name))
+        case _:
+            itempool += [world.create_item(name) for name, data in starting_items.items()]
+            pass
+
     # Based off of APQuest Code
     number_of_items = len(itempool)
     number_of_unfilled_locations = len(world.multiworld.get_unfilled_locations(world.player))
@@ -242,5 +251,3 @@ def create_all_items(world: InStarsAndTimeWorld) -> None:
     itempool += [world.create_filler() for _ in range(needed_number_of_filler_items)]
 
     world.multiworld.itempool += itempool
-
-    # Sta

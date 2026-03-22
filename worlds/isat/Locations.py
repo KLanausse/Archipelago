@@ -49,11 +49,9 @@ dormont_table: Dict[str, LocData] = {
     "Dormont - Loop Flower":            LocData(BaseId.Misc+8,      "Act 2",    "has", "Bright Flower"),
     "Dormont - Call Loop":              LocData(BaseId.Skill+160,   "Act 2"),
     "Dormont - Warning! Sharp!":        LocData(BaseId.Misc+9,      "Act 2"),
-    "Dormont - No thanks, stardust!":   LocData(BaseId.Misc+10,     "Act 2",    "has_any", [
-        "Bright Flower", "Four-Pointed Leaf", "Loving Fanmail"
-    ]),
-
-    # "Memory of Fishing": None,
+    "Dormont - No thanks, stardust!":   LocData(BaseId.Misc+10,     "Act 2",    "has_any",
+                                                ["Bright Flower", "Four-Pointed Leaf", "Loving Fanmail"]),
+    "Dormont - Memory of Fishing":      LocData(BaseId.Armor+38,   "Act 2"),
     # "Shopkeeper's Openphrase": None,  # Progression: Shopkeeper
     # "Beautiful One's Cupboard": None,
     # "Castle-Loving One's Sidequest": None,  # Progression: First Issue
@@ -61,7 +59,7 @@ dormont_table: Dict[str, LocData] = {
     # "Blind One's House": "Change Openphrase",  # Progression: Openphrase
     # "Opened Fanmail": "Loving Fanmail",
 
-    # Act 3 | Progression: King
+    # Act 3 | Progression: King (Lovely Moving Shield or Holy Care Shield)
     # "Memory of Defeat": None,  #
     # "Bonnie's Friendquest": None,  # Progression: Victory
     # "Encore!": None,  # Progression: Victory
@@ -71,12 +69,12 @@ dormont_table: Dict[str, LocData] = {
     # "Isabeau's Friendquest": None,  # Progression: Loved
     # "In this moment...": None,  # Progression: Loved
     # "...You are loved.": None,  # Progression: Loved
-    # "Memory of Puns": None,  # Progression: Betrayed
+
+
+    # Act 4 | Progression: Betrayed
+    # "Memory of Puns": None,
     # "Memory of Memories": None,  # Progression: Betrayed
     # "Mystery Book": None,  # Progression: Betrayed
-
-
-    # Act 4
     # "What was that about...?": None,  # Progression: Incident
     # "Nostalgie": None,
     # "IS THIS IT?": None,
@@ -133,3 +131,6 @@ def create_all_locations(world: InStarsAndTimeWorld) -> None:
         create_location(world, f"Floor 1 - {sub_region}", floor_1_table[sub_region])
 
     print(f"In Stars And Time: create_all_locations stub...")
+
+def create_events(world: InStarsAndTimeWorld) -> None:
+    pass

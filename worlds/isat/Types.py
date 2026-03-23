@@ -28,7 +28,7 @@ class InStarsAndTimeItem(Item):
 
 class LocData(NamedTuple):
     id: Optional[int]
-    act: Optional[str]
+    act: Optional[str] = "Act 1"
     # region: Optional[str]
     rule_type: Optional[str] = None
     rule_args: Optional[any] = None

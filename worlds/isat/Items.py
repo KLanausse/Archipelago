@@ -109,8 +109,8 @@ dormont_items: Dict[str, ItemData] = {
     "Memory of Family":                 ItemData(BaseId.Armor+86,   ItemClassification.useful,      ItemType.Armor),
     "(Just attack.)":                   ItemData(BaseId.Skill+13,   ItemClassification.useful,      ItemType.Skill),
     "Change Openphrase":                ItemData(BaseId.Misc+17,    ItemClassification.progression, ItemType.Variable),
-    "Saucepan":                         ItemData(BaseId.Item+34,    ItemClassification.useful,      ItemType.Item),
-    "Cast Iron Pan":                    ItemData(BaseId.Item+35,    ItemClassification.useful,      ItemType.Item),
+    "Saucepan":                         ItemData(BaseId.Weapon+34,  ItemClassification.useful,      ItemType.Weapon),
+    "Cast Iron Pan":                    ItemData(BaseId.Weapon+35,  ItemClassification.useful,      ItemType.Weapon),
     "Memory of Emptiness":              ItemData(BaseId.Armor+88,   ItemClassification.progression, ItemType.Armor),
     "(Rock.)":                          ItemData(BaseId.Skill+183,  ItemClassification.useful,      ItemType.Skill),
     "(Paper.)":                         ItemData(BaseId.Skill+184,  ItemClassification.useful,      ItemType.Skill),
@@ -121,7 +121,7 @@ dormont_items: Dict[str, ItemData] = {
 }
 
 entrance_items: Dict[str, ItemData] = {
-    "Memory of Sadnesses":  ItemData(BaseId.Armor+32,   ItemClassification.useful,      ItemType.Armor),
+    "Memory of Sadnesses":  ItemData(BaseId.Armor+34,   ItemClassification.useful,      ItemType.Armor),
     "Circle Key":           ItemData(BaseId.Item+22,    ItemClassification.progression, ItemType.Item),
     "Bell Pendant":         ItemData(BaseId.Item+51,    ItemClassification.progression, ItemType.Item),
     "Memory of Tonics":     ItemData(BaseId.Armor+63,   ItemClassification.useful,      ItemType.Armor),
@@ -139,7 +139,7 @@ floor_1_items: Dict[str, ItemData] = {
     "Broken Egg Key":       ItemData(BaseId.Item+24,    ItemClassification.progression, ItemType.Item),
     "Pillow Hat":           ItemData(BaseId.Armor+24,   ItemClassification.useful,      ItemType.Armor),
     "Opaque Glasses":       ItemData(BaseId.Item+20,    ItemClassification.useful,      ItemType.Armor),
-    "Memory of Keys":       ItemData(BaseId.Item+33,    ItemClassification.filler,      ItemType.Armor),
+    "Memory of Keys":       ItemData(BaseId.Armor+33,    ItemClassification.filler,      ItemType.Armor),
 }
 
 floor_2_items: Dict[str, ItemData] = {

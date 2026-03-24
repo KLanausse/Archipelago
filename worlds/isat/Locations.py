@@ -1,7 +1,7 @@
 from __future__ import annotations
-from typing import TYPE_CHECKING, Dict, Any
+from typing import TYPE_CHECKING, Dict
 
-from BaseClasses import Location
+from BaseClasses import Location, ItemClassification
 
 from .Types import LocData, BaseId
 
@@ -13,6 +13,7 @@ class InStarsAndTimeLocation(Location):
     game = "In Stars and Time"
 
 # Location IDs should match their item counterpart. If there is none associated, use BaseId.Misc
+# TODO: Most of these locations don't have their rules properly set. Review each location and set them.
 level_table: Dict[str, LocData] = {  # Levels
     "Siffrin - Buy One Get One Three":  LocData(BaseId.Skill+20,    "Act 1"),
     "Siffrin - Done Heal":              LocData(BaseId.Skill+16,    "Act 1"),
@@ -75,40 +76,151 @@ dormont_table: Dict[str, LocData] = {
     "Dormont - Loop's Coin":                    LocData(BaseId.Item+62,     "Act 6"),
     "Dormont - In this moment...":              LocData(BaseId.Armor+86,    "Act 3"),
     "Dormont - ...You are loved.":              LocData(BaseId.Misc+14,     "Act 3"),
-    "Dormont - Nostalgie":                      LocData(BaseId.Skill+13),
-    "Dormont - IS THIS IT?":                    LocData(BaseId.Misc+15),
+    "Dormont - Nostalgie":                      LocData(BaseId.Skill+13,    "Act 4"),
+    "Dormont - IS THIS IT?":                    LocData(BaseId.Misc+15,     "Act 4"),
     "Dormont - Here's some change":             LocData(BaseId.Misc+16),
-
+    "Dormont - Memory of Emptiness":            LocData(BaseId.Armor+88,    "Act 5"),
 }
 
 entrance_table: Dict[str, LocData] = {
-    "Entrance - Main Room - Circle Key":    LocData(BaseId.Item+22, "Act 1"),
-    "Entrance - Storage Room - Vial 1":     LocData(BaseId.Misc+18,  "Act 1"),
-    "Entrance - Storage Room - Vial 2":     LocData(BaseId.Misc+19,  "Act 1"),
-    "Entrance - Storage Room - Vial 3":     LocData(BaseId.Misc+20, "Act 1"),
-    "Entrance - Storage Room - Vial 4":     LocData(BaseId.Misc+21, "Act 1"),
-    "Entrance - Jackpot!":                  LocData(BaseId.Misc+22, "Act 1"),
+    "Entrance - Main Room - Circle Key":    LocData(BaseId.Item+22,     "Act 1"),
+    "Entrance - Storage Room - Vial 1":     LocData(BaseId.Misc+18,     "Act 1"),
+    "Entrance - Storage Room - Vial 2":     LocData(BaseId.Misc+19,     "Act 1"),
+    "Entrance - Storage Room - Vial 3":     LocData(BaseId.Misc+20,     "Act 1"),
+    "Entrance - Storage Room - Vial 4":     LocData(BaseId.Misc+21,     "Act 1"),
+    "Entrance - Jackpot!":                  LocData(BaseId.Misc+22,     "Act 1"),
+    "Entrance - Storage Room - Closet":     LocData(BaseId.Item+51,     "Act 1"),
+    "Entrance - Memory of Tonics":          LocData(BaseId.Armor+63,    "Act 1"),
 }
 
 floor_1_table: Dict[str, Dict[str, LocData]] = {
     "Main Room": {
+        "Floor 1 - Memory of Barrels":      LocData(BaseId.Armor+39),
+        "Floor 1 - Memory of Pillars":      LocData(BaseId.Armor+40),
+        "Floor 1 - Dining Room - Vial 1":   LocData(BaseId.Misc+23),
+        "Floor 1 - Dining Room - Vial 2":   LocData(BaseId.Misc+24),
+        "Floor 1 - Nostalgie":              LocData(BaseId.Item+32),
+        "Floor 1 - Armory - Sword Rack":    LocData(BaseId.Weapon+20),
+        "Floor 1 - Armory - Vial":          LocData(BaseId.Misc+29),
+        "Floor 1 - Armory - Forge":         LocData(BaseId.Item+50),
+        "Floor 1 - Calamité":               LocData(BaseId.Misc+31, "Act 2", "has", "Broken Egg Key"),
+        "Floor 1 - Did you see that?":      LocData(BaseId.Misc+32, "Act 2"),
+    },
 
+    "Storage Room": {
+        "Floor 1 - Locked Storage Room - Vial 1": LocData(BaseId.Misc+25),
+        "Floor 1 - Locked Storage Room - Vial 2": LocData(BaseId.Misc+26),
+    },
+
+    "Kitchen": {
+        "Floor 1 - Kitchen - Spice Rack":   LocData(BaseId.Misc+27),
+        "Floor 1 - Kitchen - Vial":         LocData(BaseId.Misc+28),
+        "Floor 1 - Kitchen - Closet":       LocData(BaseId.Item+23),
+        "Floor 1 - Kitchen - Sink":         LocData(BaseId.Weapon+33),
+    },
+
+    "Left Hallway": {
+        "Floor 1 - Bedroom - Closet":       LocData(BaseId.Item+53),
+        "Floor 1 - Bedroom - Drawer":       LocData(BaseId.Item+24),
+        "Floor 1 - Bedroom - Bed":          LocData(BaseId.Armor+24),
+        "Floor 1 - Candle Room - Closet":   LocData(BaseId.Item+20),
+        "Floor 1 - Candle Room - Vial":     LocData(BaseId.Misc+30),
+        "Floor 1 - Memory of Keys":         LocData(BaseId.Armor+33),
+        
     },
 }
 
 floor_2_table: Dict[str, Dict[str, LocData]] = {
     "Main Room": {
+        "Floor 2 - Memory of Snacks":                   LocData(BaseId.Armor+73),
+        "Floor 2 - Classroom - Notebook":               LocData(BaseId.Item+30),
+        "Floor 2 - Classroom - Vial":                   LocData(BaseId.Misc+33),
+        "Floor 2 - Nostalgie":                          LocData(BaseId.Item+33),
+        "Floor 2 - Garden Room - Closet":               LocData(BaseId.Weapon+9),
+        "Floor 2 - Garden Room - Vial":                 LocData(BaseId.Misc+34),
+        "Floor 2 - Head Housemaiden's Office - Desk":   LocData(BaseId.Item+25),
+        "Floor 2 - Accablement & Abattement":           LocData(BaseId.Misc+39),
 
+        "Floor 2 - Memory of Learning":                 LocData(BaseId.Armor+45, "Act 3"),
     },
+
+    "Library": {
+        "Floor 2 - Partner Seeking One":        LocData(BaseId.Item+60),
+        "Floor 2 - Library - Vial":             LocData(BaseId.Misc+35),
+        "Floor 2 - Library - Book":             LocData(BaseId.Weapon+26),
+        "Floor 2 - Library - Bookshelf":        LocData(BaseId.Item+26),
+        "Floor 2 - Library - Poem":             LocData(BaseId.Item+45),
+        "Floor 2 - Secret Library - Bookshelf": LocData(BaseId.Skill+38),
+    },
+
+    "Crest Locked": {
+        "Floor 2 - Infirmary - Vial":       LocData(BaseId.Misc+36),
+        "Floor 2 - Infirmary - Closet":     LocData(BaseId.Item+56),
+        "Floor 2 - Infirmary - Bed":        LocData(BaseId.Armor+12),
+
+        "Floor 2 - Trap Room - Counter":    LocData(BaseId.Item+27),
+    },
+
+    "Break Room": {
+        "Floor 2 - Break Room - Dresser":       LocData(BaseId.Misc+37),
+        "Floor 2 - Break Room - Vial":          LocData(BaseId.Misc+38),
+        "Floor 2 - Break Room - Broken Vial":   LocData(BaseId.Item+44),
+    }
 }
 
 floor_3_table: Dict[str, Dict[str, LocData]] = {
     "Main Room": {
+        "Floor 3 - Memory of Promise":          LocData(BaseId.Armor+74,    "Act 3"),
+        "Floor 3 - Best idea you've ever had!": LocData(BaseId.Misc+48),
+        "Floor 3 - Main Room - Key":            LocData(BaseId.Item+31),
+        "Floor 3 - Pottery Room - Closet":      LocData(BaseId.Misc+49),
+        "Floor 3 - Pottery Room - Shelf":       LocData(BaseId.Weapon+16),
+        "Floor 3 - Pottery Room - Clay":        LocData(BaseId.Item+48),
+        "Floor 3 - Break Room - Vial":          LocData(BaseId.Misc+50),
+        "Floor 3 - Break Room - Chain":         LocData(BaseId.Item+52),
+        "Floor 3 - Secret Room - Drawer":       LocData(BaseId.Misc+51),
+        "Floor 3 - Mirror Room - Mirror":       LocData(BaseId.Item+49),
+        "Floor 3 - Mirror Room - Key":          LocData(BaseId.Item+28),
+        "Floor 3 - Nostalgie":                  LocData(BaseId.Item+34,     "Act 2", "has", "Angry Key"),
+        "Floor 3 - Memory of Ghosts":           LocData(BaseId.Armor+36,    "Act 3"),
+        "Floor 3 - Memory of KnifeKey":         LocData(BaseId.Weapon+12,   "Act 2", "has", "KeyKnife"),
+        "Floor 3 - Memory of Reflection":       LocData(BaseId.Armor+53),
+        "Floor 3 - Memory of First Strike":     LocData(BaseId.Armor+65,    "Act 3"),
 
     },
+
+    "Crest Locked": {
+        "Floor 3 - Star Room - Drawer":     LocData(BaseId.Armor+10),
+        "Floor 3 - Poem Room - Vial":       LocData(BaseId.Misc+55),
+        "Floor 3 - Poem Room - Openphrase": LocData(BaseId.Misc+56),
+    },
+
+    "Left Hallway": {
+        "Floor 3 - Changing Room - Vial 1":     LocData(BaseId.Misc+52),
+        "Floor 3 - Changing Room - Vial 2":     LocData(BaseId.Misc+53),
+        "Floor 3 - Change Room - Closet":       LocData(BaseId.Item+29),
+        "Floor 3 - Mirabelle's Dorm - Vial":    LocData(BaseId.Misc+54),
+        "Floor 3 - Mirabelle's Dorm - Closet":  LocData(BaseId.Item+58),
+        "Floor 3 - Shrine Room - Statue":       LocData(BaseId.Item+35,     "Act 2",    "has_all",
+                                                ["Crying Key", "Double Star Crest"]),
+        "Floor 3 - Memory of Change God":       LocData(BaseId.Armor+44,    "Act 3",    "has_all",
+                                                ["Crying Key", "Double Star Crest"]),
+    }
 }
 
-the_end_table: Dict[str, Dict[str, LocData]] = {
+the_end_table: Dict[str, LocData] = {
+    "The End - Claude":                     LocData(BaseId.Item+59),
+    "The End - Memory of Safe Rooms":       LocData(BaseId.Armor+75),
+    "The End - Memory of Butt Kicking":     LocData(BaseId.Armor+43),
+    "The End - Memory of Bomb":             LocData(BaseId.Item+13),
+    "The End - The King":                   LocData(BaseId.Armor+84),
+    "The End - 1000 ways to die":           LocData(BaseId.Misc+65),
+    "The End - King Flower":                LocData(BaseId.Misc+66, "Act 2",    "has",  "Bright Flower"),
+    "The End - Head Housemaiden Flower":    LocData(BaseId.Misc+67),
+    "The End - Your favorite play":         LocData(BaseId.Misc+68),
+    "The End - Memory of A Journey":        LocData(BaseId.Armor+89),
+    "The End - Epilogue":                   LocData(BaseId.Misc+69),
+    "The End - Eternal Snacks":             LocData(BaseId.Item+61),
 
 }
 
@@ -118,8 +230,16 @@ all_locations: Dict[str, LocData] = {
     **dormont_table,
     **entrance_table,
     **floor_1_table["Main Room"],
+    **floor_1_table["Storage Room"],
+    **floor_1_table["Kitchen"],
+    **floor_1_table["Left Hallway"],
     **floor_2_table["Main Room"],
+    **floor_2_table["Library"],
+    **floor_2_table["Crest Locked"],
+    **floor_2_table["Break Room"],
     **floor_3_table["Main Room"],
+    **floor_3_table["Crest Locked"],
+    **floor_3_table["Left Hallway"],
     **the_end_table,
 }
 
@@ -139,14 +259,11 @@ def create_all_locations(world: InStarsAndTimeWorld) -> None:
     create_location(world, "Dormont", dormont_table)
     create_location(world, "Entrance", entrance_table)
 
-    for sub_region in floor_1_table:
-        create_location(world, f"Floor 1 - {sub_region}", floor_1_table[sub_region])
+    for idx, region_table in enumerate([floor_1_table, floor_2_table, floor_3_table]):
+        for sub_region in region_table:
+            region_name = f"Floor {idx+1}" if sub_region == "Main Room" else f"Floor {idx+1} - {sub_region}"
+            create_location(world, region_name, region_table[sub_region])
 
-    for sub_region in floor_2_table:
-        create_location(world, f"Floor 2 - {sub_region}", floor_1_table[sub_region])
-
-    for sub_region in floor_3_table:
-        create_location(world, f"Floor 3 - {sub_region}", floor_1_table[sub_region])
 
     create_location(world, "The End", the_end_table)
 

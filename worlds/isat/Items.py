@@ -175,7 +175,7 @@ floor_3_items: Dict[str, ItemData] = {
     "Openphrase123 Openphrase": ItemData(BaseId.Misc+56,    ItemClassification.progression, ItemType.Variable),
     "KeyKnife":                 ItemData(BaseId.Item+35,    ItemClassification.progression, ItemType.Item),
     "Memory of Ghosts":         ItemData(BaseId.Armor+36,   ItemClassification.filler,      ItemType.Armor),
-    "KnifeKey":                 ItemData(BaseId.Weapon+12,  ItemClassification.useful,      ItemType.Weapon),
+    "KnifeKey":                 ItemData(BaseId.Weapon+12,  ItemClassification.progression, ItemType.Weapon),
     "Memory of Change God":     ItemData(BaseId.Armor+44,   ItemClassification.useful,      ItemType.Armor),
     "Memory of Reflection":     ItemData(BaseId.Armor+53,   ItemClassification.useful,      ItemType.Armor),
     "Memory of First Strike":   ItemData(BaseId.Armor+65,   ItemClassification.useful,      ItemType.Armor),

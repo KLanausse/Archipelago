@@ -1,11 +1,11 @@
 from collections.abc import Mapping
-from typing import Any
+from typing import Any, Dict
 
 from BaseClasses import MultiWorld, Item, Tutorial
 from worlds.AutoWorld import World, WebWorld
 
 # Imports of your world's files must be relative.
-from . import Locations, Items, Options, Regions, Rules
+from . import Locations, Items, Options, Regions, Rules, Music
 
 
 class InStarsAndTimeWeb(WebWorld):
@@ -30,6 +30,12 @@ class InStarsAndTimeWorld(World):
 
     origin_region_name = "Dormont"
 
+    bgm_map = Dict[str, str]
+    #sfx_map = Dict[str, str]
+
+    def generate_basic(self) -> None:
+        Music.randomize_music(self)
+
     def create_regions(self) -> None:
         Regions.create_and_connect_regions(self)
         Locations.create_all_locations(self)
@@ -48,7 +54,11 @@ class InStarsAndTimeWorld(World):
         Rules.set_all_rules(self)
 
     def fill_slot_data(self) -> Mapping[str, Any]:
-        # If you need access to the player's chosen options on the client side, there is a helper for that.
-        return self.options.as_dict(
-            "death_link", "death_link_amnesty", "starting_craft", "music_rando", "enemy_rando", "troop_rando"
-        )
+        return {
+            "death_link": self.options.death_link.value,
+            "death_link_amnesty": self.options.death_link_amnesty.value,
+            "starting_craft": self.options.starting_craft.value,
+            "music_rando": self.bgm_map,
+            "enemy_rando": self.options.enemy_rando.value,
+            "troop_rando": self.options.troop_rando.value,
+        }

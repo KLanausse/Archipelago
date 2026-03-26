@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from Options import Choice, OptionGroup, PerGameCommonOptions, Range, Toggle, DeathLink
+from Options import Choice, OptionGroup, PerGameCommonOptions, Range, Toggle, DeathLink, OptionGroup
 
 
 class StartingCraft(Choice):
@@ -39,7 +39,7 @@ class TroopRando(Toggle):
 class DeathLinkAmnesty(Range):
     """Amount of Deaths to take before sending a DeathLink signal, for balancing difficulty"""
     display_name = "Death Link Amnesty"
-    range_start = 0
+    range_start = 1
     range_end = 30
     default = 5
 

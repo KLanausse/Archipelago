@@ -8,7 +8,7 @@ from worlds.AutoWorld import World, WebWorld
 from . import Locations, Items, Options, Regions, Rules, Music, Enemies
 
 
-class InStarsAndTimeWeb(WebWorld):
+class InStarsAndTimeWebWorld(WebWorld):
     theme = "grassFlowers"
 
     tutorials = [Tutorial(
@@ -21,8 +21,11 @@ class InStarsAndTimeWeb(WebWorld):
         ["Lanausse"]
     )]
 
+    option_groups = Options.OPTION_GROUPS
+
 class InStarsAndTimeWorld(World):
     game = "In Stars And Time"
+    web = InStarsAndTimeWebWorld()
 
     item_name_to_id = Items.ITEM_TABLE
     location_name_to_id = Locations.LOCATION_TABLE

@@ -30,7 +30,7 @@ class EnemyRando(Toggle):
 
 class TroopRando(Toggle):
     """
-    Randomize groups of enemys.
+    Randomize groups of enemys. Unimplemented
     """
 
     display_name = "Troop Randomizer"
@@ -43,12 +43,24 @@ class DeathLinkAmnesty(Range):
     range_end = 30
     default = 5
 
+# Taken from V6's options
+class UnavoidableDeaths(Toggle):
+    """Lets unavoidable deaths trigger Death Link"""
+    display_name = "Unavoidable Deaths"
+
 
 @dataclass
 class InStarsAndTimesOptions(PerGameCommonOptions):
     death_link: DeathLink
     death_link_amnesty: DeathLinkAmnesty
+    unavoidable_deaths: UnavoidableDeaths
     starting_craft: StartingCraft
     music_rando: MusicRando
     enemy_rando: EnemyRando
     troop_rando: TroopRando
+
+OPTION_GROUPS = [
+    OptionGroup("Game Options", [StartingCraft, MusicRando, EnemyRando]),
+    OptionGroup("Death Link", [DeathLink, DeathLinkAmnesty, UnavoidableDeaths]),
+    OptionGroup("Unimplemented Stubs", [TroopRando])
+]

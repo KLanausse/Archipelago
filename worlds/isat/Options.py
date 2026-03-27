@@ -52,8 +52,8 @@ class UnavoidableDeaths(Toggle):
 @dataclass
 class InStarsAndTimesOptions(PerGameCommonOptions):
     death_link: DeathLink
-    death_link_amnesty: DeathLinkAmnesty
     unavoidable_deaths: UnavoidableDeaths
+    death_link_amnesty: DeathLinkAmnesty
     starting_craft: StartingCraft
     music_rando: MusicRando
     enemy_rando: EnemyRando
@@ -64,3 +64,15 @@ OPTION_GROUPS = [
     OptionGroup("Death Link", [DeathLink, DeathLinkAmnesty, UnavoidableDeaths]),
     OptionGroup("Unimplemented Stubs", [TroopRando])
 ]
+
+option_presets = {
+    "Death For All": {
+        "death_link": True,
+        "unavoidable_deaths": True,
+        "death_link_amnesty": 1,
+        "starting_craft": StartingCraft.option_none,
+        "music_rando": True,
+        "enemy_rando": True,
+        "troop_rando": True
+    }
+}

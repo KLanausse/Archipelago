@@ -69,4 +69,5 @@ class InStarsAndTimeWorld(World):
             "music_rando": self.bgm_map,
             "enemy_rando": self.enemy_map,
             "troop_rando": self.troop_map,
+            "skip_intro": self.options.skip_intro.value,
         }

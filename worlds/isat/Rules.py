@@ -43,7 +43,10 @@ def set_all_location_rules(world: InStarsAndTimeWorld) -> None:
                 add_rule(location, lambda state: state.has("Circle Key", world.player))
             case "Act 3":
                 add_rule(location, lambda state: state.has("Circle Key", world.player))
-                add_rule(location, lambda state: state.has_any(["Lovely Moving Shield", "Holy Care Shield"], world.player))
+                add_rule(location,
+                         lambda state: state.has_any(["Lovely Moving Shield", "Holy Care Shield"], world.player))
+            #case "Act 4":
+            #    add_rule(location, lambda state: state.has("Memory Of Memories", world.player))
 
             case _:  # Default
                 pass

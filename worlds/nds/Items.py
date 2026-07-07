@@ -22,6 +22,10 @@ for nds_map in nds_maps:
     maps[nds_map] = ItemData(id_offset, ItemClassification.progression)
     id_offset+=1
 
+gears: Dict[str, ItemData] = {
+    "Green Balloon": ItemData(base_id + id_offset + 1, ItemClassification.useful)
+}
+
 filler_items: Dict[str, ItemData] = {
     "OOF":           ItemData(id_offset+1, ItemClassification.filler),
 }
@@ -29,6 +33,7 @@ filler_items: Dict[str, ItemData] = {
 ALL_ITEMS: Dict[str, ItemData] = {
     **disasters,
     **maps,
+    **gears,
     **filler_items,
 }
 
@@ -41,7 +46,7 @@ def create_item_with_correct_classification(world: NaturalDisasterSurvivalWorld,
     return NaturalDisasterSurvivalItem(name, ALL_ITEMS[name].classification, ALL_ITEMS[name].id + base_id, world.player)
 
 def create_all_items(world: NaturalDisasterSurvivalWorld) -> None:
-    itempool: list[Item] = []
+    itempool: list[Item] = [world.create_item(name) for name, data in gears.items()]
     disaster_pool: list[Item] = [world.create_item(name) for name, data in disasters.items()]
     map_pool: list[Item] = [world.create_item(name) for name, data in maps.items()]
 

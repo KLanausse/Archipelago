@@ -2,6 +2,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Dict
 
 from BaseClasses import Location, ItemClassification
+from Utils import visualize_regions
 
 from .Types import NaturalDisasterSurvivalLocation, base_id, nds_disasters, nds_maps
 from ..generic.Rules import set_rule
@@ -17,12 +18,12 @@ for nds_map in nds_maps:
         base_locations_by_region[nds_map][f"{nds_map} - {nds_disaster}"] = base_id + id_offset
         id_offset += 1
 
-badges: Dict[str, int] = {
-    #"Test": base_id + id_offset + 1
+misc: Dict[str, int] = {
+    "Green Balloon": base_id + id_offset + 1
 }
 
 all_locations: Dict[str, int] = {
-    **badges,
+    **misc,
 }
 for map_table in base_locations_by_region:
     all_locations.update(base_locations_by_region[map_table])
@@ -41,3 +42,9 @@ def create_all_locations(world: NaturalDisasterSurvivalWorld) -> None:
         print(region.name)
         locations = base_locations_by_region[nds_map]
         region.add_locations(locations, NaturalDisasterSurvivalLocation)
+
+    spawn = world.get_region("Spawn")
+    misc_locations = get_location_names_with_ids([name for name in misc])
+    spawn.add_locations(misc_locations, NaturalDisasterSurvivalLocation)
+
+    visualize_regions(world.get_region("Spawn"), "NDS.pmul")

@@ -31,7 +31,4 @@ def connect_regions(world: NaturalDisasterSurvivalWorld) -> None:
     spawn = world.get_region("Spawn")
     for nds_map_name in nds_maps:
         region = world.get_region(nds_map_name)
-        temp_entrance = Entrance(world.player, f"Spawn To {nds_map_name}", parent=spawn)
-        spawn.exits.append(temp_entrance)
-        temp_entrance.connect(region)
-        set_rule(temp_entrance, lambda state: state.has(nds_map_name, world.player))
+        spawn.connect(region, f"Spawn To {nds_map_name}", lambda state: state.has(nds_map_name, world.player))

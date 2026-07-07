@@ -23,7 +23,7 @@ for nds_map in nds_maps:
     id_offset+=1
 
 gears: Dict[str, ItemData] = {
-    "Green Balloon": ItemData(base_id + id_offset + 1, ItemClassification.useful)
+    "Green Balloon": ItemData(base_id + id_offset + 1, ItemClassification.filler)
 }
 
 filler_items: Dict[str, ItemData] = {

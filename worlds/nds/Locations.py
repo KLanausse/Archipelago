@@ -19,7 +19,7 @@ for nds_map in nds_maps:
         id_offset += 1
 
 misc: Dict[str, int] = {
-    "Green Balloon": base_id + id_offset + 1
+    "Green Balloon": base_id + id_offset + 1,
 }
 
 all_locations: Dict[str, int] = {
@@ -37,14 +37,19 @@ def get_location_names_with_ids(location_names: list[str]) -> dict[str, int | No
 
 
 def create_all_locations(world: NaturalDisasterSurvivalWorld) -> None:
-    for nds_map in base_locations_by_region:
-        region = world.get_region(nds_map)
-        print(region.name)
-        locations = base_locations_by_region[nds_map]
-        region.add_locations(locations, NaturalDisasterSurvivalLocation)
+    for nds_map_name in base_locations_by_region:
+        region = world.get_region(nds_map_name)
+        for location_name in base_locations_by_region[nds_map_name]:
+            location = NaturalDisasterSurvivalLocation(
+                world.player, location_name, world.location_name_to_id[location_name], region
+            )
+            disaster_name = location_name.split(" - ")[1]
+            set_rule(location, lambda state: state.has(disaster_name, world.player))
+            region.locations.append(location)
+
 
     spawn = world.get_region("Spawn")
     misc_locations = get_location_names_with_ids([name for name in misc])
     spawn.add_locations(misc_locations, NaturalDisasterSurvivalLocation)
 
-    visualize_regions(world.get_region("Spawn"), "NDS.pmul")
+    visualize_regions(world.get_region("Spawn"), "NDS.pmul", detail_other_regions=True, show_entrance_names=True, show_other_regions=True)

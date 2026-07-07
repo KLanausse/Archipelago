@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from Options import Choice, OptionGroup, PerGameCommonOptions, Range, Toggle, DeathLink, OptionGroup
 
 @dataclass
-class RobloxEggHuntOptions(PerGameCommonOptions):
+class NaturalDisasterSurvivalOptions(PerGameCommonOptions):
     death_link: DeathLink
 
 OPTION_GROUPS = [

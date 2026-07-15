@@ -3,35 +3,30 @@ from __future__ import annotations
 from collections.abc import Callable
 from typing import TYPE_CHECKING
 
-from BaseClasses import Entrance, Region, DEFAULT_COLLECTION_RULE
+from BaseClasses import DEFAULT_COLLECTION_RULE, Entrance, Region
 
 if TYPE_CHECKING:
     from .World import InStarsAndTimeWorld
 
 region_names = [
     "Level",
-
     # Village
     "Dormont",
     "Dormont - Storage House",
-
     # Castle
     "Entrance",
     "Floor 1",  # 017 Locked by Circle Key
     "Floor 1 - Kitchen",
     "Floor 1 - Left Hallway",
     "Floor 1 - Storage Room",
-
     "Floor 2",
     "Floor 2 - Library",
     "Floor 2 - Crest Locked",
     "Floor 2 - Break Room",
-
     "Floor 3",
     "Floor 3 - Crest Locked",
     "Floor 3 - Left Hallway",
-
-    "The End"
+    "The End",
 ]
 
 
@@ -83,32 +78,45 @@ def connect_regions(world: InStarsAndTimeWorld) -> None:
 
     # Two Ways
     # Floor 1
-    floor_1.connect(floor_1_kitchen, "Floor 1 to Floor 1 - Kitchen",
-                    lambda state: state.has("Teardrop Star Crest", world.player))
+    floor_1.connect(
+        floor_1_kitchen, "Floor 1 to Floor 1 - Kitchen", lambda state: state.has("Teardrop Star Crest", world.player)
+    )
 
-    floor_1.connect(floor_1_left_hallway, "Floor 1 to Floor 1 Left Hallway",
-                    lambda state: state.has("Egg Key", world.player))
+    floor_1.connect(
+        floor_1_left_hallway, "Floor 1 to Floor 1 Left Hallway", lambda state: state.has("Egg Key", world.player)
+    )
 
-    floor_1.connect(floor_1_storage_room, "Floor 1 to Floor 1 Storage Room",
-                    lambda state: state.has("Stostorage Roomoom Openphrase", world.player))
+    floor_1.connect(
+        floor_1_storage_room,
+        "Floor 1 to Floor 1 Storage Room",
+        lambda state: state.has("Stostorage Roomoom Openphrase", world.player),
+    )
 
     # Floor 2
-    floor_2.connect(floor_2_library, "Floor 2 to Floor 2 Library",
-                    lambda state: state.has("Rock Key", world.player))
+    floor_2.connect(floor_2_library, "Floor 2 to Floor 2 Library", lambda state: state.has("Rock Key", world.player))
 
-    floor_2.connect(floor_2_crest_locked, "Floor 2 to Floor 2 Crest Locked",
-                    lambda state: state.has("Clock Star Crest", world.player))
+    floor_2.connect(
+        floor_2_crest_locked,
+        "Floor 2 to Floor 2 Crest Locked",
+        lambda state: state.has("Clock Star Crest", world.player),
+    )
 
-    floor_2.connect(floor_2_break_room, "Floor 2 to Floor 2 Break Room",
-                    lambda state: state.has("Openphrase123 Openphrase", world.player))
+    floor_2.connect(
+        floor_2_break_room,
+        "Floor 2 to Floor 2 Break Room",
+        lambda state: state.has("Openphrase123 Openphrase", world.player),
+    )
 
     # Floor 3
-    floor_3.connect(floor_3_crest_locked, "Floor 3 to Floor 3 Crest Locked",
-                    lambda state: state.has("Double Star Crest", world.player))
+    floor_3.connect(
+        floor_3_crest_locked,
+        "Floor 3 to Floor 3 Crest Locked",
+        lambda state: state.has("Double Star Crest", world.player),
+    )
 
-    floor_3.connect(floor_3_left_hallway, "Floor 3 to Floor 3 Left Hallway",
-                    lambda state: state.has("Smiling Key", world.player))
-
+    floor_3.connect(
+        floor_3_left_hallway, "Floor 3 to Floor 3 Left Hallway", lambda state: state.has("Smiling Key", world.player)
+    )
 
     # Make Level A Global Region
     for region_name in region_names:

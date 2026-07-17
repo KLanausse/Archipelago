@@ -27,7 +27,11 @@ gears: Dict[str, ItemData] = {
 }
 
 filler_items: Dict[str, ItemData] = {
-    "OOF":           ItemData(id_offset+2, ItemClassification.filler),
+    "+10 Health":           ItemData(id_offset+2, ItemClassification.filler),
+}
+
+traps: Dict[str, ItemData] = {
+    "-10 Health":           ItemData(id_offset+3, ItemClassification.trap),
 }
 
 ALL_ITEMS: Dict[str, ItemData] = {

@@ -1,11 +1,9 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING, Dict
 
-from BaseClasses import Location, ItemClassification
-from Utils import visualize_regions
+from rule_builder.rules import Has, HasAll
 
 from .Types import NaturalDisasterSurvivalLocation, base_id, nds_disasters, nds_maps
-from ..generic.Rules import set_rule
 
 if TYPE_CHECKING:
     from .World import NaturalDisasterSurvivalWorld
@@ -37,19 +35,17 @@ def get_location_names_with_ids(location_names: list[str]) -> dict[str, int | No
 
 
 def create_all_locations(world: NaturalDisasterSurvivalWorld) -> None:
+    spawn = world.get_region("Spawn")
     for nds_map_name in base_locations_by_region:
         region = world.get_region(nds_map_name)
         for location_name in base_locations_by_region[nds_map_name]:
             location = NaturalDisasterSurvivalLocation(
-                world.player, location_name, world.location_name_to_id[location_name], region
+                world.player, location_name, world.location_name_to_id[location_name], spawn
             )
             disaster_name = location_name.split(" - ")[1]
-            set_rule(location, lambda state: state.has(disaster_name, world.player))
+            world.set_rule(location, HasAll(disaster_name, nds_map_name))
             region.locations.append(location)
 
 
-    spawn = world.get_region("Spawn")
     misc_locations = get_location_names_with_ids([name for name in misc])
     spawn.add_locations(misc_locations, NaturalDisasterSurvivalLocation)
-
-    visualize_regions(world.get_region("Spawn"), "NDS.pmul", detail_other_regions=True, show_entrance_names=True, show_other_regions=True)

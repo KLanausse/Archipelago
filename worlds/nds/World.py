@@ -1,7 +1,6 @@
 from collections.abc import Mapping
-from typing import Any, Dict
+from typing import Any
 
-from BaseClasses import MultiWorld, Item, Tutorial
 from worlds.AutoWorld import World, WebWorld
 
 

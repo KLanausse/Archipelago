@@ -10,7 +10,7 @@ from .Types import ItemData, NaturalDisasterSurvivalItem, base_id, nds_disasters
 if TYPE_CHECKING:
     from .World import NaturalDisasterSurvivalWorld
 
-id_offset = 1
+id_offset = base_id + 1
 disasters: Dict[str, ItemData] = {}
 maps: Dict[str, ItemData] = {}
 
@@ -23,11 +23,11 @@ for nds_map in nds_maps:
     id_offset+=1
 
 gears: Dict[str, ItemData] = {
-    "Green Balloon": ItemData(base_id + id_offset + 1, ItemClassification.filler)
+    "Green Balloon": ItemData(id_offset + 1, ItemClassification.filler)
 }
 
 filler_items: Dict[str, ItemData] = {
-    "OOF":           ItemData(id_offset+1, ItemClassification.filler),
+    "OOF":           ItemData(id_offset+2, ItemClassification.filler),
 }
 
 ALL_ITEMS: Dict[str, ItemData] = {
@@ -37,13 +37,13 @@ ALL_ITEMS: Dict[str, ItemData] = {
     **filler_items,
 }
 
-ITEM_TABLE = {name: data.id + base_id for name, data in ALL_ITEMS.items()}
+ITEM_TABLE = {name: data.id for name, data in ALL_ITEMS.items()}
 
 def get_random_filler_item_name(world: NaturalDisasterSurvivalWorld):
     return random.choice([name for name in filler_items]) # Temp
 
 def create_item_with_correct_classification(world: NaturalDisasterSurvivalWorld, name: str) -> NaturalDisasterSurvivalItem:
-    return NaturalDisasterSurvivalItem(name, ALL_ITEMS[name].classification, ALL_ITEMS[name].id + base_id, world.player)
+    return NaturalDisasterSurvivalItem(name, ALL_ITEMS[name].classification, ALL_ITEMS[name].id, world.player)
 
 def create_all_items(world: NaturalDisasterSurvivalWorld) -> None:
     itempool: list[Item] = [world.create_item(name) for name, data in gears.items()]
@@ -51,15 +51,15 @@ def create_all_items(world: NaturalDisasterSurvivalWorld) -> None:
     map_pool: list[Item] = [world.create_item(name) for name, data in maps.items()]
 
     # Start with 1 Map & 1 Disaster. Remove them from their pool
-    starting_disaster: Item = random.choice(disaster_pool)
-    world.push_precollected(starting_disaster)
-    disaster_pool.remove(starting_disaster)
-    itempool += disaster_pool
-
     starting_map: Item = random.choice(map_pool)
     world.push_precollected(starting_map)
     map_pool.remove(starting_map)
     itempool += map_pool
+
+    starting_disaster: Item = random.choice(disaster_pool)
+    world.push_precollected(starting_disaster)
+    disaster_pool.remove(starting_disaster)
+    itempool += disaster_pool
 
     # Based off of APQuest Code
     number_of_items = len(itempool)

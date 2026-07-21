@@ -26,12 +26,16 @@ gears: Dict[str, ItemData] = {
     "Green Balloon": ItemData(id_offset + 1, ItemClassification.filler)
 }
 
-filler_items: Dict[str, ItemData] = {
-    "+10 Health":           ItemData(id_offset+2, ItemClassification.filler),
+traps: Dict[str, ItemData] = {
+    "Trip Everyone":        ItemData(id_offset+2, ItemClassification.trap),
+    "Slow Down":            ItemData(id_offset+3, ItemClassification.trap),
 }
 
-traps: Dict[str, ItemData] = {
-    "-10 Health":           ItemData(id_offset+3, ItemClassification.trap),
+filler_items: Dict[str, ItemData] = {
+    **traps,
+    "+10 Health":           ItemData(id_offset+4, ItemClassification.filler),
+    "Speed Up":             ItemData(id_offset+5, ItemClassification.filler),
+    "Time Change":          ItemData(id_offset+6, ItemClassification.filler),
 }
 
 ALL_ITEMS: Dict[str, ItemData] = {

@@ -38,4 +38,7 @@ class NaturalDisasterSurvivalWorld(World):
     def fill_slot_data(self) -> Mapping[str, Any]:
         return {
             "death_link": self.options.death_link.value,
+            "server_percentage": self.options.server_percentage.value,
+            "disaster_duration": self.options.disaster_duration.value,
+            "intermission_duration": self.options.intermission_duration.value,
         }

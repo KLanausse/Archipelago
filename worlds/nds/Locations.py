@@ -1,7 +1,7 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING, Dict
 
-from rule_builder.rules import Has, HasAll
+from rule_builder.rules import HasAll
 
 from .Types import NaturalDisasterSurvivalLocation, base_id, nds_disasters, nds_maps
 
